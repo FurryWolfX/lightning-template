@@ -1,8 +1,3 @@
-require("babel-register")({
-  presets: ["env", "flow"],
-  plugins: ["syntax-async-functions", "transform-regenerator", "babel-polyfill"]
-});
-
 const Lightning = require("@wolfx/lightning");
 const path = require("path");
 

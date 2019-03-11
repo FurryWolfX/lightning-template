@@ -1,6 +1,6 @@
-import Lightning from "@wolfx/lightning";
-import { findByAge } from "../service/user";
-import ResultJSON from "../model/ResultJSON";
+const Lightning = require("@wolfx/lightning");
+const { findByAge } = require("../service/user");
+const ResultJSON = require("../model/ResultJSON");
 
 const { app } = Lightning.core.getState();
 

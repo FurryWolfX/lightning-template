@@ -1,4 +1,4 @@
-import Lightning from "@wolfx/lightning";
+const Lightning = require("@wolfx/lightning");
 const { app, upload } = Lightning.core.getState();
 
 // single 文件上传

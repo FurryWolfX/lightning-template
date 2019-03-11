@@ -6,4 +6,4 @@ class ResultJSON {
   }
 }
 
-export default ResultJSON;
+module.exports = ResultJSON;

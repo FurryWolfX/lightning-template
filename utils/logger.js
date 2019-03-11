@@ -14,4 +14,4 @@ const logger = log4js.getLogger("Lightning");
 // logger.error("Cheese is too ripe!");
 // logger.fatal("Cheese was breeding ground for listeria.");
 
-export default logger;
+module.exports = logger;
