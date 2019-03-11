@@ -12,7 +12,8 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "log4js": "^4.0.2"
   },
   "devDependencies": {
     "mysql": "^2.16.0",
