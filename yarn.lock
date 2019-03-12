@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@wolfx/lightning@^1.2.4":
-  version "1.2.4"
-  resolved "http://registry.npm.taobao.org/@wolfx/lightning/download/@wolfx/lightning-1.2.4.tgz#95ed047a801d241f26eb775fad4d811ec33bc45f"
-  integrity sha1-le0EeoAdJB8m63dfrU2BHsM7xF8=
+"@wolfx/lightning@^1.2.5":
+  version "1.2.5"
+  resolved "http://registry.npm.taobao.org/@wolfx/lightning/download/@wolfx/lightning-1.2.5.tgz#3f45d08f337d9d49b220f812f827c572d763499f"
+  integrity sha1-P0XQjzN9nUmyIPgS+CfFctdjSZ8=
   dependencies:
     "@wolfx/nodebatis-lite" "^1.0.1"
     body-parser "^1.18.3"
