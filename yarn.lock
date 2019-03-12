@@ -14,9 +14,9 @@
     multer "^1.4.1"
 
 "@wolfx/nodebatis-lite@^1.0.1":
-  version "1.0.3"
-  resolved "http://registry.npm.taobao.org/@wolfx/nodebatis-lite/download/@wolfx/nodebatis-lite-1.0.3.tgz#62e6ac0283e39e4df5f2aef8deca9d2f5b5b2310"
-  integrity sha1-YuasAoPjnk318q743sqdL1tbIxA=
+  version "1.0.4"
+  resolved "http://registry.npm.taobao.org/@wolfx/nodebatis-lite/download/@wolfx/nodebatis-lite-1.0.4.tgz#d469f7c69f399238b26b2bd76b6250d00dc11950"
+  integrity sha1-1Gn3xp85kjiyayvXa2JQ0A3BGVA=
   dependencies:
     js-yaml "^3.12.2"
     lodash "^4.17.11"
