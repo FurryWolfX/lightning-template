@@ -6,6 +6,8 @@
 
 打算经过一些项目洗礼之后再逐步将高级功能整合到 lightning/core 中。
 
+本项目还有些不完善的地方，暂为公司内部使用。
+
 ### 项目结构
 
 Lightning 使用约定大于配置的理念。约定的结构如下：
@@ -20,6 +22,12 @@ Lightning 使用约定大于配置的理念。约定的结构如下：
 --- utils 工具函数
 --- views 视图模板（可选，建议前后端分离，必要时需自己引入模板引擎，如 EJS）
 ```
+
+### 代码生成
+
+`lightning-generator` 的雏形已经写了，可以生成 CURD 以及 router 的代码，配合 `lightning-template` 使用。
+
+[传送门](https://github.com/FurryWolfX/lightning-generator)
 
 ### 使用说明
 
