@@ -2,8 +2,11 @@
 // https://log4js-node.github.io/log4js-node/index.html
 const log4js = require("log4js");
 log4js.configure({
-  appenders: { lightning: { type: "file", filename: "lightning.log" } },
-  categories: { default: { appenders: ["lightning"], level: "info" } }
+  appenders: {
+    file: { type: "file", filename: "lightning.log" },
+    console: { type: "console" }
+  },
+  categories: { default: { appenders: ["file", "console"], level: "info" } }
 });
 
 const logger = log4js.getLogger("Lightning");
