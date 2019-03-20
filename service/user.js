@@ -9,8 +9,19 @@ module.exports.findByAge = async age => {
   });
 };
 
+module.exports.queryByParams = async params => {
+  params.limitStart = (params.pageIndex - 1) * params.pageSize;
+  params.limitSize = +params.pageSize;
+  return await database.query("test.queryByParams", params);
+};
+
 module.exports.findById = async id => {
-  return await database.find("test", ["*"], id);
+  const result = await database.find("test", ["*"], id);
+  if (result.length > 0) {
+    return result[0];
+  } else {
+    return {};
+  }
 };
 
 module.exports.updateById = async data => {

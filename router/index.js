@@ -1,5 +1,5 @@
 const Lightning = require("@wolfx/lightning");
-const { findByAge } = require("../service/user");
+const { findByAge, queryByParams } = require("../service/user");
 const logger = require("../utils/logger");
 const ResultJSON = require("../model/ResultJSON");
 
@@ -11,6 +11,21 @@ app.get("/test", async (req, res) => {
   const json = new ResultJSON();
   try {
     json.data = await findByAge(18);
+    json.msg = "查询成功";
+    json.success = true;
+  } catch (e) {
+    json.data = null;
+    json.msg = "查询失败";
+    json.success = false;
+    logger.error(e);
+  }
+  res.send(json);
+});
+
+app.get("/queryByParams", async (req, res) => {
+  const json = new ResultJSON();
+  try {
+    json.data = await queryByParams(req.query);
     json.msg = "查询成功";
     json.success = true;
   } catch (e) {

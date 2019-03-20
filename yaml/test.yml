@@ -1,5 +1,23 @@
 namespace: 'test'
 
 findByAge:
-  - select name, age from user where
-  - age > :age
+      - select name, age from user where
+      - age > :age
+
+queryByParams:
+      - select * from user where
+      - if:
+              test: :id
+              sql: id = :id
+      - if:
+              test: :name
+              sql: name = :name
+      - if:
+              test: :age
+              sql: age = :age
+      - if:
+              test: :userDesc
+              sql: user_desc = :userDesc
+      - if:
+              test: :limitSize
+              sql: limit :limitStart,:limitSize
