@@ -6,7 +6,7 @@
     "node": ">= 8.11.0"
   },
   "dependencies": {
-    "@wolfx/lightning": "^1.2.10",
+    "@wolfx/lightning": "^1.2.11",
     "log4js": "^4.0.2"
   },
   "devDependencies": {

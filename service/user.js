@@ -46,5 +46,5 @@ module.exports.insert = async data => {
 };
 
 module.exports.delete = async id => {
-  return await database.delete("test", id);
+  return await database.del("test", id);
 };
