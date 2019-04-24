@@ -19,14 +19,19 @@ Lightning.core.setConfig({
     debugCallback: (key, sql, params) => {
       // 这里可以接入log4js等
       // 使用debugCallback后debug不会输出log，需要在回调中自己处理
+      console.log(`[SQL] ${key}`);
+      console.log(`[SQL] ${sql}`);
+      console.log(`[SQL] ${JSON.stringify(params)}`);
     }
   },
   cors: {
     allowedOrigins: ["*"]
   },
+  requestLogCallback: (method, url) => {
+    console.log(`[R] ${method} ${url}`);
+  },
   responseLogCallback: (method, url, time) => {
-    // 用于监控请求响应时间
-    console.log(`${method} ${url} ${time}ms`);
+    console.log(`[S] ${method} ${url} ${time}ms`);
   },
   storage: path.resolve(__dirname, "./public/upload"),
   yaml: path.resolve(__dirname, "./yaml"),

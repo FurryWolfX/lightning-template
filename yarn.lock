@@ -71,23 +71,24 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
-"@wolfx/lightning@^1.2.11":
-  version "1.2.12"
-  resolved "http://registry.npm.taobao.org/@wolfx/lightning/download/@wolfx/lightning-1.2.12.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2F%40wolfx%2Flightning%2Fdownload%2F%40wolfx%2Flightning-1.2.12.tgz#dd6177d56dfb275472d80aabf4cf122b6e880e76"
-  integrity sha1-3WF31W37J1Ry2Aqr9M8SK26IDnY=
+"@wolfx/lightning@^1.2.14":
+  version "1.2.14"
+  resolved "https://registry.npm.taobao.org/@wolfx/lightning/download/@wolfx/lightning-1.2.14.tgz#9a679849ffd4f3d792d00f5824e4c8d4d37f8159"
+  integrity sha1-mmeYSf/U89eS0A9YJOTI1NN/gVk=
   dependencies:
     "@types/express" "^4.16.0"
     "@types/multer" "^1.3.7"
-    "@wolfx/nodebatis-lite" "^1.1.0"
+    "@wolfx/nodebatis-lite" "^1.2.1"
     body-parser "^1.18.3"
+    cookie-parser "^1.4.4"
     express "^4.16.4"
     express-cors "0.0.3"
     multer "^1.4.1"
 
-"@wolfx/nodebatis-lite@^1.1.0":
-  version "1.1.0"
-  resolved "http://registry.npm.taobao.org/@wolfx/nodebatis-lite/download/@wolfx/nodebatis-lite-1.1.0.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2F%40wolfx%2Fnodebatis-lite%2Fdownload%2F%40wolfx%2Fnodebatis-lite-1.1.0.tgz#8439433668380ad2c9a1bb44733646a979ca9513"
-  integrity sha1-hDlDNmg4CtLJobtEczZGqXnKlRM=
+"@wolfx/nodebatis-lite@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.npm.taobao.org/@wolfx/nodebatis-lite/download/@wolfx/nodebatis-lite-1.2.1.tgz#84e184187ff7f96f94b86cccb27e6344240b17a5"
+  integrity sha1-hOGEGH/3+W+UuGzMsn5jRCQLF6U=
   dependencies:
     "@types/mysql" "^2.15.5"
     js-yaml "^3.12.2"
@@ -184,6 +185,14 @@ content-type@~1.0.4:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/content-type/download/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
   integrity sha1-4TjMdeBAxyexlm/l5fjJruJW/js=
+
+cookie-parser@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.npm.taobao.org/cookie-parser/download/cookie-parser-1.4.4.tgz#e6363de4ea98c3def9697b93421c09f30cf5d188"
+  integrity sha1-5jY95OqYw975aXuTQhwJ8wz10Yg=
+  dependencies:
+    cookie "0.3.1"
+    cookie-signature "1.0.6"
 
 cookie-signature@1.0.6:
   version "1.0.6"
