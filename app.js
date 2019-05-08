@@ -1,7 +1,7 @@
 const Lightning = require("@wolfx/lightning");
 const path = require("path");
 
-Lightning.core.setConfig({
+Lightning.setConfig({
   database: {
     debug: true,
     dialect: "mysql",
@@ -24,6 +24,7 @@ Lightning.core.setConfig({
       console.log(`[SQL] ${JSON.stringify(params)}`);
     }
   },
+  websocket: false,
   cors: {
     allowedOrigins: ["*"]
   },
