@@ -3,7 +3,12 @@
 const log4js = require("log4js");
 log4js.configure({
   appenders: {
-    file: { type: "file", filename: "lightning.log" },
+    file: {
+      type: "dateFile",
+      filename: "./log/lightning",
+      alwaysIncludePattern: true,
+      pattern: "yyyy-MM-dd.log"
+    },
     console: { type: "console" }
   },
   categories: { default: { appenders: ["file", "console"], level: "info" } }
