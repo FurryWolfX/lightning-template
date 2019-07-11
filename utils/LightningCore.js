@@ -3,6 +3,7 @@
  */
 const path = require("path");
 const NL = require("@wolfx/nodebatis-lite");
+const logger = require("../utils/logger");
 
 const databaseConfig = {
   debug: true,
@@ -19,11 +20,9 @@ const databaseConfig = {
     connectionLimit: 5
   },
   debugCallback: (key, sql, params) => {
-    // 这里可以接入log4js等
-    // 使用debugCallback后debug不会输出log，需要在回调中自己处理
-    console.log(`[SQL] ${key}`);
-    console.log(`[SQL] ${sql}`);
-    console.log(`[SQL] ${JSON.stringify(params)}`);
+    logger.info(`[SQL] ${key}`);
+    logger.info(`[SQL] ${sql}`);
+    logger.info(`[SQL] ${JSON.stringify(params)}`);
   }
 };
 const db = new NL(path.resolve(__dirname, "../yaml"), databaseConfig);
