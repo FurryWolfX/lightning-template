@@ -10,7 +10,7 @@ const { app } = Lightning.core.getState();
 
 app.all("*", (req, res, next) => {
   // 公共拦截，可以做权限校验等操作
-  // next();
+  next();
 });
 
 app.get("/", (req, res) => res.send("Hello World!"));
