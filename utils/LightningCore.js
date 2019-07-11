@@ -2,8 +2,7 @@
  * 用于实现一些公共继承
  */
 const path = require("path");
-const Lightning = require("@wolfx/lightning");
-const NodebatisLite = require("@wolfx/nodebatis-lite");
+const NL = require("@wolfx/nodebatis-lite");
 
 const databaseConfig = {
   debug: true,
@@ -27,7 +26,7 @@ const databaseConfig = {
     console.log(`[SQL] ${JSON.stringify(params)}`);
   }
 };
-const db = new NodebatisLite(path.resolve(__dirname, "../yaml"), databaseConfig);
+const db = new NL(path.resolve(__dirname, "../yaml"), databaseConfig);
 
 class LightningCore {
   constructor() {

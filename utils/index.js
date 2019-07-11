@@ -17,3 +17,14 @@ module.exports.getGUID = () => {
 module.exports.random = (start, stop) => {
   return parseInt(Math.random() * (stop - start) + start);
 };
+
+/**
+ * 异步等待
+ * @param time
+ * @returns {Promise<any>}
+ */
+module.exports.sleep = time => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(), time);
+  });
+};
