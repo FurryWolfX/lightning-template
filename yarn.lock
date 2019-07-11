@@ -84,10 +84,10 @@
     express-cors "0.0.3"
     multer "^1.4.1"
 
-"@wolfx/nodebatis-lite@^1.3.1-2":
-  version "1.3.1-2"
-  resolved "https://registry.yarnpkg.com/@wolfx/nodebatis-lite/-/nodebatis-lite-1.3.1-2.tgz#24b840f4127d455d8843efdbd8667f3120fbf886"
-  integrity sha512-wWFBc0klop5eA3k+RfkTPPT6cl3gRbXFnt2ChkFoxZSeAv0K8ZlxQLZQ/FCF7WcPWEZa3Ulq3a0H1F/YIM8OFQ==
+"@wolfx/nodebatis-lite@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.npmjs.org/@wolfx/nodebatis-lite/-/nodebatis-lite-1.3.2.tgz#7193953d956a124d95a3de7788c7c5f2c1c92986"
+  integrity sha512-5twxoUv9hBI04sIpwBixDz90B5bDHh4Eyl9RH+uequBxkwpYuXxUG0+0Lo2Tc7s7aNm+SCXhXzbY5zdrdA3RCA==
   dependencies:
     "@types/mysql" "^2.15.5"
     js-yaml "^3.12.2"
