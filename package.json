@@ -9,7 +9,7 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
-    "@wolfx/lightning": "^2.1.0",
+    "@wolfx/lightning": "^2.1.1",
     "@wolfx/nodebatis-lite": "^1.3.2",
     "log4js": "^4.0.2",
     "mysql": "^2.16.0"
