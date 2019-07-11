@@ -22,9 +22,9 @@ app.get("/test", async (req, res) => {
     json.msg = "查询成功";
     json.success = true;
   } catch (e) {
-    json.data = null;
     json.msg = "查询失败";
     json.success = false;
+    json.errorMsg = e.stack;
     logger.error(e.stack);
   }
   res.send(json);
@@ -37,9 +37,9 @@ app.post("/testPost", async (req, res) => {
     json.msg = "查询成功";
     json.success = true;
   } catch (e) {
-    json.data = null;
     json.msg = "查询失败";
     json.success = false;
+    json.errorMsg = e.stack;
     logger.error(e.stack);
   }
   res.send(json);
@@ -52,9 +52,9 @@ app.get("/queryByParams", async (req, res) => {
     json.msg = "查询成功";
     json.success = true;
   } catch (e) {
-    json.data = null;
     json.msg = "查询失败";
     json.success = false;
+    json.errorMsg = e.stack;
     logger.error(e.stack);
   }
   res.send(json);
