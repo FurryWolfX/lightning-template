@@ -31,16 +31,21 @@ const mid = middleware(initConfig);
  *      alert("支付失败，请重试");
  *    }
  *  });
+ * @param body 标题
+ * @param attach 附加数据
+ * @param total_fee 金额
+ * @param spbill_create_ip 创建者IP
+ * @param openid
  * @returns {Promise<*>}
  */
-async function doPay() {
+async function doPay(body, attach, total_fee, spbill_create_ip, openid) {
   const order = {
-    body: "吮指原味鸡 * 1",
-    attach: '{"部位":"三角"}',
-    out_trade_no: "kfc" + new Date().getTime(),
-    total_fee: 10 * 100,
-    spbill_create_ip: req.ip,
-    openid: req.user.openid,
+    body, // 标题
+    attach, // 附加数据
+    out_trade_no: "kfc" + new Date().getTime(), // 订单号
+    total_fee, // 金额
+    spbill_create_ip, // 创建者IP
+    openid,
     trade_type: "JSAPI"
   };
   let payargs = await payment.getBrandWCPayRequestParams(order);
