@@ -1,5 +1,5 @@
 const Lightning = require("@wolfx/lightning");
-const { projectName } = require("../const/config");
+const { projectName } = require("../config");
 const ResultJSON = require("../model/ResultJSON");
 const logger = require("../utils/logger");
 

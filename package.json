@@ -10,12 +10,16 @@
   },
   "dependencies": {
     "@wolfx/lightning": "^2.1.1",
-    "@wolfx/nodebatis-lite": "^1.3.2",
+    "@wolfx/nodebatis-lite": "^1.4.0-alpha",
     "log4js": "^4.0.2",
     "mysql": "^2.16.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1",
     "prettier": "^1.16.4"
+  },
+  "optionalDependencies": {
+    "wechat-oauth": "^1.5.0",
+    "wechat-pay": "^0.3.2"
   }
 }
