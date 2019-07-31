@@ -9,10 +9,10 @@ Lightning.setConfig({
     allowedOrigins: ["*"]
   },
   requestLogCallback: (method, url) => {
-    logger.info(`[request] ${method} ${url}`);
+    logger.info(`[request:${process.pid}] ${method} ${url}`);
   },
   responseLogCallback: (method, url, time) => {
-    logger.info(`[response] ${method} ${url} ${time}ms`);
+    logger.info(`[response:${process.pid}] ${method} ${url} ${time}ms`);
   },
   storage: path.resolve(__dirname, "./public/upload"),
   routerDir: path.resolve(__dirname, "./router")
