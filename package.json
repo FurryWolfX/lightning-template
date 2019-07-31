@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "pm2 start app.js --name lightning-template",
+    "restart": "pm2 restart lightning-template",
     "stop": "pm2 stop lightning-template",
     "delete": "pm2 delete lightning-template"
   },
