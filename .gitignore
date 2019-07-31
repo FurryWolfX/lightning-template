@@ -2,5 +2,5 @@
 node_modules/
 log/
 *.log
-*.lock
+yarn.lock
 package-lock.json
