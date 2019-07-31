@@ -11,7 +11,8 @@ log4js.configure({
     },
     console: { type: "console" }
   },
-  categories: { default: { appenders: ["file", "console"], level: "info" } }
+  categories: { default: { appenders: ["file", "console"], level: "info" } },
+  disableClustering: true
 });
 
 const logger = log4js.getLogger("Lightning");

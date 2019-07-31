@@ -24,10 +24,9 @@ process.on("unhandledRejection", error => {
   logger.error(error.stack);
 });
 
-if (cluster.isMaster) {
-  setInterval(() => {
-    // 每分钟输出一次内存
-    const mString = Math.floor(process.memoryUsage().rss / 1024 / 1024) + "MB";
-    logger.info(`[master -> memory use] ${mString}`);
-  }, 1000 * 60);
-}
+setInterval(() => {
+  // 每分钟输出一次内存
+  const processType = cluster.isMaster ? "master" : "worker";
+  const mString = Math.floor(process.memoryUsage().rss / 1024 / 1024) + "MB";
+  logger.info(`[${processType}:${process.pid} -> memory use] ${mString}`);
+}, 1000 * 60);
