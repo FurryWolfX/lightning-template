@@ -79,5 +79,6 @@ function getUser(openid) {
 
 module.exports = {
   getAccessToken,
-  getUser
+  getUser,
+  url
 };

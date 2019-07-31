@@ -1,5 +1,6 @@
 const Lightning = require("@wolfx/lightning");
 const path = require("path");
+const cluster = require("cluster");
 const logger = require("./utils/logger");
 
 Lightning.setConfig({
@@ -22,3 +23,11 @@ Lightning.core.start(3001);
 process.on("unhandledRejection", error => {
   logger.error(error.stack);
 });
+
+if (cluster.isMaster) {
+  setInterval(() => {
+    // 每分钟输出一次内存
+    const mString = Math.floor(process.memoryUsage().rss / 1024 / 1024) + "MB";
+    logger.info(`[master -> memory use] ${mString}`);
+  }, 1000 * 60);
+}

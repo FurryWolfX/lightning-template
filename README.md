@@ -18,6 +18,18 @@
 
 目前作为公司内部使用，使用 MIT 开源协议。
 
+### 完善的日志记录系统和异常处理
+
+所有日志将记录在 `log` 文件夹中。
+
+lightning-template 会记录请求和响应的日志，并且会记录每次响应所消耗的时间，以便于排查性能问题。
+
+lightning-template 会记录所有的 SQL 执行记录，便于排查业务逻辑错误。
+
+lightning-template 会记录请求逻辑中的所有错误信息，便于排查问题。
+
+lightning-template 还会定时记录内存消耗情况，帮助排查可能的内存泄露问题。
+
 ### 代码生成
 
 `lightning-generator` 的雏形已经写了，可以生成 CURD 以及 router 的代码，配合 `lightning-template` 使用。
