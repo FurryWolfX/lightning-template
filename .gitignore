@@ -1,6 +1,7 @@
 .idea/
 node_modules/
 log/
+public/apidoc/
 *.log
 yarn.lock
 package-lock.json

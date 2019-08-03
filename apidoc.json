@@ -1,0 +1,13 @@
+{
+  "name": "lightning-template",
+  "version": "1.0.0",
+  "description": "lightning-template API",
+  "title": "lightning-template API",
+  "url" : "http://localhost:3001",
+  "sampleUrl": "http://localhost:3001",
+  "forceLanguage":"zh-cn",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  }
+}

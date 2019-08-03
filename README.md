@@ -63,3 +63,7 @@ Lightning 使用约定大于配置的理念。约定的结构如下：
 ### 使用说明
 
 [传送门](https://www.npmjs.com/package/@wolfx/lightning)
+
+### API 文档生成
+
+集成 [apidoc](http://apidocjs.com)
