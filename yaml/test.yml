@@ -1,29 +1,29 @@
-namespace: 'test'
+namespace: "test"
 
 findByAge:
-      - select name, age from user where
-      - age > :age
+  - select name, age from user where
+  - age > :age
 
 params:
-        - where 1=1
-        - if:
-            test: :id
-            sql: and id = :id
-        - if:
-            test: :name
-            sql: and name = :name
-        - if:
-            test: :age
-            sql: and age = :age
-        - if:
-            test: :userDesc
-            sql: and user_desc = :userDesc
-        - if:
-            test: :limitSize
-            sql: limit :limitStart,:limitSize
+  - where 1=1
+  - if:
+      test: :id
+      sql: and id = :id
+  - if:
+      test: :name
+      sql: and name = :name
+  - if:
+      test: :age
+      sql: and age = :age
+  - if:
+      test: :userDesc
+      sql: and user_desc = :userDesc
+  - if:
+      test: :limitSize
+      sql: limit :limitStart,:limitSize
 
 queryByParams:
-      - select * from user {{ test.params }}
+  - select * from user {{ test.params }}
 
 countByParams:
   - select count(*) as count from user {{ test.params }}
