@@ -19,7 +19,7 @@ const builder = new Builder({
 const build = (namespace, params) => {
   const namespaceArray = namespace.split(".");
   const sqlString = builder.build(namespaceArray[0], namespaceArray[1], params);
-  logger.info("[SQL] " + sqlString);
+  logger.info(`[SQL:${process.pid}] ${sqlString}`);
   return sqlString;
 };
 
