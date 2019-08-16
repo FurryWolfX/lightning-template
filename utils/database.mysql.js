@@ -4,7 +4,7 @@
  * 可根据需要自己拓展
  */
 const path = require("path");
-const Builder = require("@wolfx/x-sql");
+const Builder = require("@wolfx/x-sql").default;
 const mysql = require("mysql");
 const { databaseConfig } = require("../config");
 const logger = require("./logger");
