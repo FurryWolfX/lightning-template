@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "tsc --watch",
-    "dev": "nodemon build/app.js",
+    "dev": "nodemon build/app.js -e js,xml,json",
     "start": "pm2 start build/app.js --name lightning-template -i 2",
     "restart": "pm2 restart lightning-template",
     "stop": "pm2 stop lightning-template",
