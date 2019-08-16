@@ -1,6 +1,6 @@
-const database = require("../utils/database.mysql");
+import * as database from "../utils/database.mysql";
 
-async function findByName(name) {
+export async function findByName(name): Promise<any[]> {
   return await database.query("test.find", {
     flag: 1,
     name: name,
@@ -17,5 +17,3 @@ async function findByName(name) {
     ]
   });
 }
-
-module.exports.findByName = findByName;

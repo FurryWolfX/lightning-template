@@ -1,4 +1,4 @@
-const databaseConfig = {
+export const databaseConfig = {
   debug: true,
   host: "192.168.1.22",
   port: 3306,
@@ -7,8 +7,4 @@ const databaseConfig = {
   password: "junlian",
   camelCase: true
 };
-
-module.exports = {
-  projectName: "", // URL 前缀
-  databaseConfig
-};
+export const projectName = ""; // URL 前缀

@@ -3,13 +3,14 @@
  * https://www.npmjs.com/package/mysql
  * 可根据需要自己拓展
  */
-const path = require("path");
-const Builder = require("@wolfx/x-sql");
-const mysql = require("mysql");
-const { databaseConfig } = require("../config");
-const logger = require("./logger");
+import * as path from "path";
+import Builder from "@wolfx/x-sql";
+import * as mysql from "mysql";
+import { databaseConfig } from "../config";
+import logger from "./logger";
+
 const builder = new Builder({
-  dir: path.resolve(__dirname, "../xml"),
+  dir: path.resolve(__dirname, "../../xml"),
   debug: true,
   debugCallback: log => {
     // console.log(log);
@@ -32,7 +33,7 @@ const pool = mysql.createPool({
   port: databaseConfig.port
 });
 
-const query = (namespace, params) => {
+export const query = (namespace, params): Promise<any[]> => {
   return new Promise((resolve, reject) => {
     const sqlString = build(namespace, params);
     pool.query(sqlString, function(error, results, fields) {
@@ -44,5 +45,3 @@ const query = (namespace, params) => {
     });
   });
 };
-
-module.exports.query = query;

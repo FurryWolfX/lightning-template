@@ -1,7 +1,11 @@
 /**
  * 定义返回给前端的通用包装格式
  */
-class ResultJSON {
+export default class ResultJSON {
+  success: boolean;
+  msg: string;
+  errorMsg: string;
+  data: any;
   constructor() {
     this.success = false; // 请求是否有异常
     this.msg = ""; // 提示信息
@@ -9,5 +13,3 @@ class ResultJSON {
     this.data = null; // 数据
   }
 }
-
-module.exports = ResultJSON;

@@ -1,6 +1,6 @@
-const user = require("../service/user");
-const ResultJSON = require("../model/ResultJSON");
-const { get, post } = require("../utils/router");
+import * as user from "../service/user";
+import ResultJSON from "../model/ResultJSON";
+import { get, post } from "../utils/router";
 
 /**
  * @api {GET} /user/test 查询测试用户数据

@@ -1,26 +1,26 @@
-const Lightning = require("@wolfx/lightning");
-const path = require("path");
-const cluster = require("cluster");
-const logger = require("./utils/logger");
+import * as path from "path";
+import * as cluster from "cluster";
+import * as Lightning from "@wolfx/lightning";
+import logger from "./utils/logger";
 
 Lightning.setConfig({
   websocket: false,
   cors: {
     allowedOrigins: ["*"]
   },
-  requestLogCallback: (method, url) => {
+  requestLogCallback: (method: string, url: string) => {
     logger.info(`[request:${process.pid}] ${method} ${url}`);
   },
-  responseLogCallback: (method, url, time) => {
+  responseLogCallback: (method: string, url: string, time: string) => {
     logger.info(`[response:${process.pid}] ${method} ${url} ${time}ms`);
   },
-  storage: path.resolve(__dirname, "./public/upload"),
+  storage: path.resolve(__dirname, "../public/upload"),
   routerDir: path.resolve(__dirname, "./router")
 });
 Lightning.core.start(3001);
 
 // error handler
-process.on("unhandledRejection", error => {
+process.on("unhandledRejection", (error: Error) => {
   logger.error(error.stack);
 });
 

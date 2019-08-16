@@ -1,6 +1,7 @@
 // 日志模块
 // https://log4js-node.github.io/log4js-node/index.html
-const log4js = require("log4js");
+import * as log4js from "log4js";
+
 log4js.configure({
   appenders: {
     file: {
@@ -23,4 +24,4 @@ const logger = log4js.getLogger("Lightning");
 // logger.error("Cheese is too ripe!");
 // logger.fatal("Cheese was breeding ground for listeria.");
 
-module.exports = logger;
+export default logger;

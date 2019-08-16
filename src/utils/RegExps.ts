@@ -19,4 +19,4 @@ const RegExps = {
   Emoji: /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/
 };
 
-module.exports = RegExps;
+export default RegExps;

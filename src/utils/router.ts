@@ -1,11 +1,11 @@
-const Lightning = require("@wolfx/lightning");
-const { projectName } = require("../config");
-const ResultJSON = require("../model/ResultJSON");
-const logger = require("../utils/logger");
+import * as Lightning from "@wolfx/lightning";
+import { projectName } from "../config/index";
+import ResultJSON from "../model/ResultJSON";
+import logger from "./logger";
 
 const { app } = Lightning.core.getState();
 
-function handler(method, url, fn) {
+function handler(method: string, url: string, fn: Function) {
   app[method](projectName + url, async (req, res, next) => {
     const json = new ResultJSON();
     try {
@@ -20,14 +20,14 @@ function handler(method, url, fn) {
   });
 }
 
-module.exports.get = function(url, fn) {
+export function get(url, fn) {
   handler("get", url, fn);
-};
+}
 
-module.exports.post = function(url, fn) {
+export function post(url, fn) {
   handler("post", url, fn);
-};
+}
 
-module.exports.all = function(url, fn) {
+export function all(url, fn) {
   handler("all", url, fn);
-};
+}
