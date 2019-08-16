@@ -1,5 +1,5 @@
 import * as Lightning from "@wolfx/lightning";
-import { Request, Response, NextFunction } from "@wolfx/lightning/types/type";
+import { Request, Response, NextFunction } from "@wolfx/lightning/src/type";
 import { projectName } from "../config";
 import ResultJSON from "../model/ResultJSON";
 import logger from "./logger";
