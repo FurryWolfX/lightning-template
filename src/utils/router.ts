@@ -1,8 +1,8 @@
 import * as Lightning from "@wolfx/lightning";
+import { Request, Response, NextFunction } from "@wolfx/lightning/types/type";
 import { projectName } from "../config";
 import ResultJSON from "../model/ResultJSON";
 import logger from "./logger";
-import { Request, Response, NextFunction } from "express";
 
 const { app } = Lightning.core.getState();
 

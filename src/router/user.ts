@@ -10,7 +10,7 @@ import { get, post } from "../utils/router";
  */
 get("/user/test", async (req, res) => {
   const json = new ResultJSON();
-  json.data = await user.findByName("admin");
+  json.data = await user.findByName(req.query.userName);
   json.msg = "查询成功";
   json.success = true;
   res.send(json);

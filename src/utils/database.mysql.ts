@@ -4,9 +4,8 @@
  * 可根据需要自己拓展
  */
 import * as path from "path";
-import Builder from "@wolfx/x-sql";
+import Builder from "../third-party/x-sql";
 import * as mysql from "mysql";
-import { databaseConfig } from "../config";
 import logger from "./logger";
 
 const builder = new Builder({
@@ -26,11 +25,11 @@ const build = (namespace, params) => {
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: databaseConfig.host,
-  user: databaseConfig.user,
-  password: databaseConfig.password,
-  database: databaseConfig.database,
-  port: databaseConfig.port
+  host: "127.0.0.1",
+  user: "root",
+  password: "haosql",
+  database: "test",
+  port: 3306
 });
 
 export const query = (namespace, params): Promise<any[]> => {

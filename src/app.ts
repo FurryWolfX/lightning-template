@@ -5,7 +5,6 @@ import "source-map-support/register";
 import logger from "./utils/logger";
 
 Lightning.setConfig({
-  websocket: false,
   cors: {
     allowedOrigins: ["*"]
   },
