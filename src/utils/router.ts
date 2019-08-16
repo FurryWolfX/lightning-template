@@ -1,12 +1,15 @@
 import * as Lightning from "@wolfx/lightning";
-import { projectName } from "../config/index";
+import { projectName } from "../config";
 import ResultJSON from "../model/ResultJSON";
 import logger from "./logger";
+import { Request, Response, NextFunction } from "express";
 
 const { app } = Lightning.core.getState();
 
-function handler(method: string, url: string, fn: Function) {
-  app[method](projectName + url, async (req, res, next) => {
+type Fn = (req: Request, res: Response, next: NextFunction) => void;
+
+function handler(method: string, url: string, fn: Fn) {
+  app[method](projectName + url, async (req: Request, res: Response, next: NextFunction) => {
     const json = new ResultJSON();
     try {
       await fn(req, res, next);
@@ -20,14 +23,14 @@ function handler(method: string, url: string, fn: Function) {
   });
 }
 
-export function get(url, fn) {
+export function get(url: string, fn: Fn) {
   handler("get", url, fn);
 }
 
-export function post(url, fn) {
+export function post(url: string, fn: Fn) {
   handler("post", url, fn);
 }
 
-export function all(url, fn) {
+export function all(url: string, fn: Fn) {
   handler("all", url, fn);
 }

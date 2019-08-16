@@ -3,9 +3,9 @@
  * @source https://github.com/node-webot/wechat-oauth
  * @update 2019-07-30
  */
-const OAuth = require("wechat-oauth");
-const fs = require("fs");
-const path = require("path");
+import * as OAuth from "wechat-oauth";
+import * as fs from "fs";
+import * as path from "path";
 
 const isMiniProgram = false; // 是否是小程序
 const redirectUrl = "redirectUrl"; // 授权重定向
@@ -37,14 +37,14 @@ function saveToken(openid, token, callback) {
 const oauthApi = new OAuth(appid, secret, getToken, saveToken, isMiniProgram);
 
 // 生成引导用户点击的URL。
-const url = oauthApi.getAuthorizeURL(redirectUrl, state, scope);
+export const url = oauthApi.getAuthorizeURL(redirectUrl, state, scope);
 
 /**
  * 获取Openid和AccessToken
  * 用户点击上步生成的URL后会被重定向到上步设置的 redirectUrl，并且会带有code参数，我们可以使用这个code换取
  * @param code
  */
-function getAccessToken(code) {
+export function getAccessToken(code) {
   oauthApi.getAccessToken(code, function(err, result) {
     return new Promise((resolve, reject) => {
       if (err) {
@@ -65,7 +65,7 @@ function getAccessToken(code) {
  * （必须在getAccessToken方法执行完成之后）
  * @param openid
  */
-function getUser(openid) {
+export function getUser(openid) {
   oauthApi.getUser(openid, function(err, userInfo) {
     return new Promise((resolve, reject) => {
       if (err) {
@@ -76,9 +76,3 @@ function getUser(openid) {
     });
   });
 }
-
-module.exports = {
-  getAccessToken,
-  getUser,
-  url
-};

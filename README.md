@@ -40,6 +40,8 @@ lightning-template 对 pm2 的聚合模式做了适配，并且在 log 中可以
 
 ### 代码生成
 
+**由于 template 更新，暂未适配新版**
+
 `lightning-generator` 的雏形已经写了，可以生成 CURD 以及 router 的代码，配合 `lightning-template` 使用。
 
 [传送门](https://github.com/FurryWolfX/lightning-generator)
@@ -50,15 +52,16 @@ Lightning 使用约定大于配置的理念。约定的结构如下：
 
 ```
 - root
---- config 一些配制
---- model 存放模型文件（可选）
---- public 默认静态资源根目录
---- router 路径定义放这里面，server启动时Lightning会扫描目录下的文件并读取路由
---- service 业务逻辑在这里写
---- yaml sql在这里写
---- utils 工具函数和第三方模块
---- views 视图模板（可选，建议前后端分离，必要时需自己引入模板引擎，如 EJS）
---- log 自动生成的log文件，lightning-template已经做了强大的日志处理，方便排查
+----| public 默认静态资源根目录
+----| xml sql在这里写
+----| views 视图模板（可选，建议前后端分离，必要时需自己引入模板引擎，如 EJS）
+----| log 自动生成的log文件，lightning-template已经做了强大的日志处理，方便排查
+----| src
+-------| config 一些配制
+-------| model 存放模型文件（可选）
+-------| router 路径定义放这里面，server启动时Lightning会扫描目录下的文件并读取路由
+-------| service 业务逻辑在这里写
+-------| utils 工具函数和第三方模块
 ```
 
 ### 使用说明

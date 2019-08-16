@@ -3,8 +3,8 @@
  * @source https://github.com/supersheep/wechat-pay
  * @update 2019-07-30
  */
-const fs = require("fs");
-const { Payment, middleware } = require("wechat-pay");
+import * as fs from "fs";
+import { Payment, middleware } from "wechat-pay";
 
 // 初始化
 const initConfig = {
@@ -38,7 +38,7 @@ const mid = middleware(initConfig);
  * @param openid
  * @returns {Promise<*>}
  */
-async function doPay(body, attach, total_fee, spbill_create_ip, openid) {
+export async function doPay(body, attach, total_fee, spbill_create_ip, openid) {
   const order = {
     body, // 标题
     attach, // 附加数据
@@ -51,5 +51,3 @@ async function doPay(body, attach, total_fee, spbill_create_ip, openid) {
   let payargs = await payment.getBrandWCPayRequestParams(order);
   return payargs;
 }
-
-module.exports = { doPay };
