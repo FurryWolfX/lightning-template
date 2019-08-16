@@ -20,7 +20,8 @@
     "@wolfx/x-sql": "1.0.1-alpha4",
     "log4js": "^4.0.2",
     "mysql": "^2.16.0",
-    "pm2": "^3.5.1"
+    "pm2": "^3.5.1",
+    "source-map-support": "^0.5.13"
   },
   "devDependencies": {
     "@types/mysql": "^2.15.6",

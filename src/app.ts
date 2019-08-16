@@ -1,6 +1,7 @@
 import * as path from "path";
 import * as cluster from "cluster";
 import * as Lightning from "@wolfx/lightning";
+import "source-map-support/register";
 import logger from "./utils/logger";
 
 Lightning.setConfig({
