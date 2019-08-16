@@ -3,6 +3,7 @@
  */
 import { all, get } from "../utils/router";
 import * as database from "../utils/database.mysql";
+import ResultJSON from "../model/ResultJSON";
 
 all("*", (req, res, next) => {
   // 公共拦截，可以做权限校验等操作
@@ -18,5 +19,9 @@ get("/query/:namespace/:queryName", async (req, res) => {
   const { namespace, queryName } = req.params;
   const key = `${namespace}.${queryName}`;
   const result = await database.query(key, req.query);
-  res.send(result);
+  const json = new ResultJSON();
+  json.data = result;
+  json.msg = "通用查询成功";
+  json.success = true;
+  res.send(json);
 });

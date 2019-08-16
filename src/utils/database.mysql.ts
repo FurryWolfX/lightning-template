@@ -13,7 +13,7 @@ const builder = new Builder({
   dir: path.resolve(__dirname, "../../xml"),
   debug: true,
   debugCallback: log => {
-    // console.log(log);
+    console.log(log);
   }
 });
 
