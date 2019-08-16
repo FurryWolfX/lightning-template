@@ -1,6 +1,6 @@
 const user = require("../service/user");
 const ResultJSON = require("../model/ResultJSON");
-const { get, post } = require("../utils/routerUtil");
+const { get, post } = require("../utils/router");
 
 /**
  * @api {GET} /user/test 查询测试用户数据
@@ -10,7 +10,7 @@ const { get, post } = require("../utils/routerUtil");
  */
 get("/user/test", async (req, res) => {
   const json = new ResultJSON();
-  json.data = await user.findByAge(18);
+  json.data = await user.findByName("admin");
   json.msg = "查询成功";
   json.success = true;
   res.send(json);
@@ -19,20 +19,11 @@ get("/user/test", async (req, res) => {
 /**
  * @api {POST} /user/testPost 测试post提交
  * @apiDescription 测试post提交
- * @apiParam {Number} [id] 其实没有参数
  * @apiGroup User
  */
 post("/user/testPost", async (req, res) => {
   const json = new ResultJSON();
   json.data = req.body;
-  json.msg = "查询成功";
-  json.success = true;
-  res.send(json);
-});
-
-get("/user/queryByParams", async (req, res) => {
-  const json = new ResultJSON();
-  json.data = await user.queryByParams(req.query);
   json.msg = "查询成功";
   json.success = true;
   res.send(json);

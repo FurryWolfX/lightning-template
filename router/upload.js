@@ -1,4 +1,4 @@
-const { post } = require("../utils/routerUtil");
+const { post } = require("../utils/router");
 const Lightning = require("@wolfx/lightning");
 const { upload } = Lightning.core.getState();
 // single 文件上传

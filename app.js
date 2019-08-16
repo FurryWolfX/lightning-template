@@ -24,8 +24,8 @@ process.on("unhandledRejection", error => {
   logger.error(error.stack);
 });
 
+// 每分钟输出一次内存
 setInterval(() => {
-  // 每分钟输出一次内存
   const processType = cluster.isMaster ? "master" : "worker";
   const mString = Math.floor(process.memoryUsage().rss / 1024 / 1024) + "MB";
   logger.info(`[${processType}:${process.pid} -> memory use] ${mString}`);

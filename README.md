@@ -50,6 +50,7 @@ Lightning 使用约定大于配置的理念。约定的结构如下：
 
 ```
 - root
+--- config 一些配制
 --- model 存放模型文件（可选）
 --- public 默认静态资源根目录
 --- router 路径定义放这里面，server启动时Lightning会扫描目录下的文件并读取路由

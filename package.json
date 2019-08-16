@@ -2,7 +2,7 @@
   "name": "lightning-template",
   "description": "fast web framework",
   "author": "wolfx",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "engines": {
     "node": ">= 8.11.0"
   },
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@wolfx/lightning": "^2.1.1",
-    "@wolfx/nodebatis-lite": "^1.4.0-alpha",
+    "@wolfx/x-sql": "1.0.1-alpha",
     "log4js": "^4.0.2",
     "mysql": "^2.16.0",
     "pm2": "^3.5.1"

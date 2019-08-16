@@ -1,0 +1,13 @@
+<root namespace="test">
+  <query name="find">
+    select * from user where 1=1
+    <if condition="@flag === 1">
+      and user_name = @name
+    </if>
+    and id in (
+    <for separator="," array="idList">
+      @id
+    </for>
+    )
+  </query>
+</root>
