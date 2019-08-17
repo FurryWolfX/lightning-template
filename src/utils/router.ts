@@ -1,10 +1,22 @@
-import * as Lightning from "@wolfx/lightning";
-import { Request, Response, NextFunction } from "@wolfx/lightning/src/type";
+import Lightning from "@wolfx/lightning";
 import { projectName } from "../config";
 import ResultJSON from "../model/ResultJSON";
 import logger from "./logger";
 
 const { app } = Lightning.core.getState();
+
+type Request = {
+  params: { [key: string]: string };
+  query: { [key: string]: string };
+  body: { [key: string]: string };
+};
+
+type Response = {
+  send: (param: any) => void;
+  json: (param: any) => void;
+};
+
+type NextFunction = () => void;
 
 type Fn = (req: Request, res: Response, next: NextFunction) => void;
 

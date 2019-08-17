@@ -1,4 +1,4 @@
-import * as Lightning from "@wolfx/lightning";
+import Lightning from "@wolfx/lightning";
 
 const { app, upload } = Lightning.core.getState();
 

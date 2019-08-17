@@ -53,7 +53,7 @@ Lightning 使用约定大于配置的理念。约定的结构如下：
 ```
 - root
 ----| public 默认静态资源根目录
-----| xml sql在这里写
+----| xml SQL在这里写
 ----| views 视图模板（可选，建议前后端分离，必要时需自己引入模板引擎，如 EJS）
 ----| log 自动生成的log文件，lightning-template已经做了强大的日志处理，方便排查
 ----| src
@@ -61,10 +61,70 @@ Lightning 使用约定大于配置的理念。约定的结构如下：
 -------| model 存放模型文件（可选）
 -------| router 路径定义放这里面，server启动时Lightning会扫描目录下的文件并读取路由
 -------| service 业务逻辑在这里写
--------| utils 工具函数和第三方模块
+-------| utils 工具函数
+-------| third-party 第三方模块和一些实验性特性
 ```
 
-### 使用说明
+### x-sql 规范
+
+#### 简单查询
+
+简单查询使用 `select` `insert` `update` `delete`，无需写 SQL。
+
+接口参考：
+
+```typescript
+interface DatabaseMysql {
+  static runXml(namespace: string, params: any): Promise<any[]>;
+  static select(table: string, cols: string[], whereObject: any, op: string = "and"): Promise<any[]>;
+  static insert(table: string, data: any): Promise<any[]>;
+  static update(table: string, data: any, whereObject: any, op: string = "and"): Promise<any[]>;
+  static delete(table: string, whereObject: any, op: string = "and"): Promise<any[]>;
+}
+```
+
+代码使用：
+
+```typescript
+DatabaseMysql.select("user", ["name", "age"], { id: 1, name: "wolfx" });
+DatabaseMysql.insert("user", { id: 1, name: "wolfx" });
+DatabaseMysql.update("user", { id: 1, name: "wolfx" }, { id: 2, name: "wolfx2" });
+DatabaseMysql.delete("user", { id: 2, name: "wolfx2" });
+```
+
+#### 复杂查询
+
+复杂查询使用 `runXml`。
+
+```xml
+<root namespace="test">
+  <query name="getUser">
+    select * from user where 1=1
+    <if condition="typeof @name === 'string'">
+      and user_name = @name
+    </if>
+  </query>
+</root>
+```
+
+`<root namespace="test">` 创建名称为 `test` 的命名空间。
+
+`<query name="getUser">` 创建名称为 `getUser` 的查询。
+
+`<if condition="typeof @name === 'string'">` 条件为 `true` 则获取子元素，`condition` 是一个 `JavaScript` 表达式。
+
+在代码中使用：
+
+```typescript
+import DatabaseMysql from "../utils/database.mysql";
+export async function findByName(name): Promise<any[]> {
+  return await DatabaseMysql.runXml("test.getUser", {
+    name: name
+  });
+}
+```
+
+### lightning-core
 
 [传送门](https://www.npmjs.com/package/@wolfx/lightning)
 

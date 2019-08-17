@@ -1,7 +1,7 @@
 <root namespace="test">
   <query name="getUser">
     select * from user where 1=1
-    <if condition="@flag === '1'">
+    <if condition="typeof @name === 'string'">
       and user_name = @name
     </if>
   </query>

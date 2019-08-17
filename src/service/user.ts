@@ -1,19 +1,7 @@
-import * as database from "../utils/database.mysql";
+import DatabaseMysql from "../utils/database.mysql";
 
 export async function findByName(name): Promise<any[]> {
-  return await database.query("test.find", {
-    flag: 1,
-    name: name,
-    idList: [
-      {
-        id: 1
-      },
-      {
-        id: 3
-      },
-      {
-        id: 5
-      }
-    ]
+  return await DatabaseMysql.runXml("test.getUser", {
+    name: name
   });
 }

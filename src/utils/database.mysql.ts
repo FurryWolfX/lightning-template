@@ -8,6 +8,9 @@ import Builder from "../third-party/x-sql";
 import * as mysql from "mysql";
 import logger from "./logger";
 
+/**
+ * 初始化 XML 编译器
+ */
 const builder = new Builder({
   dir: path.resolve(__dirname, "../../xml"),
   debug: true,
@@ -16,13 +19,9 @@ const builder = new Builder({
   }
 });
 
-const build = (namespace, params) => {
-  const namespaceArray = namespace.split(".");
-  const sqlString = builder.build(namespaceArray[0], namespaceArray[1], params);
-  logger.info(`[SQL:${process.pid}] ${sqlString}`);
-  return sqlString;
-};
-
+/**
+ * 初始化连接池
+ */
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: "127.0.0.1",
@@ -32,9 +31,8 @@ const pool = mysql.createPool({
   port: 3306
 });
 
-export const query = (namespace, params): Promise<any[]> => {
+const query = (sqlString: string): Promise<any[]> => {
   return new Promise((resolve, reject) => {
-    const sqlString = build(namespace, params);
     pool.query(sqlString, function(error, results, fields) {
       if (error) {
         reject(error);
@@ -44,3 +42,34 @@ export const query = (namespace, params): Promise<any[]> => {
     });
   });
 };
+
+class DatabaseMysql {
+  static async runXml(namespace: string, params: any): Promise<any[]> {
+    const namespaceArray = namespace.split(".");
+    const sqlString = builder.build(namespaceArray[0], namespaceArray[1], params);
+    logger.info(`[SQL:${process.pid}] ${sqlString}`);
+    return await query(sqlString);
+  }
+  static async select(table: string, cols: string[], whereObject: any, op: string = "and"): Promise<any[]> {
+    const sqlString = Builder.select(table, cols, whereObject, op);
+    logger.info(`[SQL:${process.pid}] ${sqlString}`);
+    return await query(sqlString);
+  }
+  static async insert(table: string, data: any): Promise<any[]> {
+    const sqlString = Builder.insert(table, data);
+    logger.info(`[SQL:${process.pid}] ${sqlString}`);
+    return await query(sqlString);
+  }
+  static async update(table: string, data: any, whereObject: any, op: string = "and"): Promise<any[]> {
+    const sqlString = Builder.update(table, data, whereObject, op);
+    logger.info(`[SQL:${process.pid}] ${sqlString}`);
+    return await query(sqlString);
+  }
+  static async delete(table: string, whereObject: any, op: string = "and"): Promise<any[]> {
+    const sqlString = Builder.delete(table, whereObject, op);
+    logger.info(`[SQL:${process.pid}] ${sqlString}`);
+    return await query(sqlString);
+  }
+}
+
+export default DatabaseMysql;

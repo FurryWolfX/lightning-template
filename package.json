@@ -2,7 +2,7 @@
   "name": "lightning-template",
   "description": "fast web framework",
   "author": "wolfx",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "engines": {
     "node": ">= 8.11.0"
   },
@@ -16,7 +16,7 @@
     "doc": "apidoc -i src/router -o public/apidoc"
   },
   "dependencies": {
-    "@wolfx/lightning": "3.0.7",
+    "@wolfx/lightning": "^3.0.9",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
     "mysql": "^2.16.0",
