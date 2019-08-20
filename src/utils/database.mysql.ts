@@ -7,6 +7,7 @@ import * as path from "path";
 import Builder from "../third-party/x-sql";
 import * as mysql from "mysql";
 import logger from "./logger";
+import { camelCase, snakeCase } from "./caseHandle";
 
 /**
  * 初始化 XML 编译器
@@ -37,7 +38,7 @@ const query = (sqlString: string): Promise<any[]> => {
       if (error) {
         reject(error);
       } else {
-        resolve(results);
+        resolve(camelCase(results));
       }
     });
   });
@@ -51,7 +52,7 @@ class DatabaseMysql {
     return await query(sqlString);
   }
   static async select(table: string, cols: string[], whereObject: any, op: string = "and"): Promise<any[]> {
-    const sqlString = Builder.select(table, cols, whereObject, op);
+    const sqlString = Builder.select(table, cols, snakeCase(whereObject), op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
@@ -61,12 +62,12 @@ class DatabaseMysql {
     return await query(sqlString);
   }
   static async update(table: string, data: any, whereObject: any, op: string = "and"): Promise<any[]> {
-    const sqlString = Builder.update(table, data, whereObject, op);
+    const sqlString = Builder.update(table, data, snakeCase(whereObject), op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
   static async delete(table: string, whereObject: any, op: string = "and"): Promise<any[]> {
-    const sqlString = Builder.delete(table, whereObject, op);
+    const sqlString = Builder.delete(table, snakeCase(whereObject), op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }

@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 
-export function camelCase(data: any) {
+export function camelCase(data: any): any {
   if (_.isArray(data)) {
     return data.map(item => {
       const parsedItem = {};
@@ -18,7 +18,7 @@ export function camelCase(data: any) {
   }
 }
 
-export function snakeCase(data: any) {
+export function snakeCase(data: any): any {
   if (_.isArray(data)) {
     return data.map(item => {
       const parsedItem = {};
