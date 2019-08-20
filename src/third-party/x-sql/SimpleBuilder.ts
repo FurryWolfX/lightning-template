@@ -6,8 +6,9 @@ class SimpleBuilder {
    * @param cols 列名
    * @param whereObject 查询条件
    * @param op 条件操作符，默认 and
+   * @param orderBy 排序 asc desc
    */
-  public static select(table: string, cols: string[], whereObject: any, op: string = "and"): string {
+  public static select(table: string, cols: string[], whereObject: any, op: string = "and", orderBy?: string): string {
     const whereKeys = Object.keys(whereObject || {});
     const sql = ["select", cols.join(", "), "from", table];
     const params = [];
@@ -20,6 +21,9 @@ class SimpleBuilder {
       });
     }
     sql.push(where.join(` ${op} `));
+    if (orderBy) {
+      sql.push(`order by ${orderBy}`);
+    }
     return SqlString.format(sql.join(" ") + ";", params);
   }
 

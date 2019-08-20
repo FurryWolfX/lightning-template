@@ -51,8 +51,8 @@ class DatabaseMysql {
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
-  static async select(table: string, cols: string[], whereObject: any, op: string = "and"): Promise<any[]> {
-    const sqlString = Builder.select(table, cols, snakeCase(whereObject), op);
+  static async select(table: string, cols: string[], whereObject: any, op: string = "and", orderBy?: string): Promise<any[]> {
+    const sqlString = Builder.select(table, cols, snakeCase(whereObject), op, orderBy);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
