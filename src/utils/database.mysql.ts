@@ -51,12 +51,12 @@ class DatabaseMysql {
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
-  static async select(table: string, cols: string[], whereObject: any = {}, op: string = "and", orderBy?: string): Promise<any[]> {
+  static async select(table: string, cols: string[], whereObject: any = {}, op: string = "AND", orderBy?: string): Promise<any[]> {
     const sqlString = Builder.select(table, cols, snakeCase(whereObject), op, orderBy);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
-  static async count(table: string, whereObject: any = {}, op: string = "and"): Promise<number> {
+  static async count(table: string, whereObject: any = {}, op: string = "AND"): Promise<number> {
     const sqlString = Builder.count(table, whereObject, op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     const result = await query(sqlString);
@@ -71,12 +71,12 @@ class DatabaseMysql {
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
-  static async update(table: string, data: any, whereObject: any = {}, op: string = "and"): Promise<any[]> {
+  static async update(table: string, data: any, whereObject: any = {}, op: string = "AND"): Promise<any[]> {
     const sqlString = Builder.update(table, data, snakeCase(whereObject), op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
-  static async delete(table: string, whereObject: any = {}, op: string = "and"): Promise<any[]> {
+  static async delete(table: string, whereObject: any = {}, op: string = "AND"): Promise<any[]> {
     const sqlString = Builder.delete(table, snakeCase(whereObject), op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
