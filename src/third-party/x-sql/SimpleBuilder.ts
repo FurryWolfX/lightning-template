@@ -8,9 +8,33 @@ class SimpleBuilder {
    * @param op 条件操作符，默认 and
    * @param orderBy 排序 asc desc
    */
-  public static select(table: string, cols: string[], whereObject: any, op: string = "and", orderBy?: string): string {
+  public static select(table: string, cols: string[], whereObject: any, op: string = "AND", orderBy?: string): string {
     const whereKeys = Object.keys(whereObject || {});
-    const sql = ["select", cols.join(", "), "from", table];
+    const sql = ["SELECT", cols.join(", "), "FROM", table];
+    const params = [];
+    const where = [];
+    if (whereKeys.length > 0) {
+      sql.push("WHERE");
+      whereKeys.forEach(key => {
+        where.push(`${key} = ?`);
+        params.push(whereObject[key]);
+      });
+    }
+    sql.push(where.join(` ${op} `));
+    if (orderBy) {
+      sql.push(`ORDER BY ${orderBy}`);
+    }
+    return SqlString.format(sql.join(" ") + ";", params);
+  }
+
+  /**
+   * @param table 表名
+   * @param whereObject 查询条件
+   * @param op 条件操作符，默认 and
+   */
+  public static count(table: string, whereObject: any, op: string = "AND"): string {
+    const whereKeys = Object.keys(whereObject || {});
+    const sql = ["SELECT COUNT(*) AS count", "FROM", table];
     const params = [];
     const where = [];
     if (whereKeys.length > 0) {
@@ -21,9 +45,6 @@ class SimpleBuilder {
       });
     }
     sql.push(where.join(` ${op} `));
-    if (orderBy) {
-      sql.push(`order by ${orderBy}`);
-    }
     return SqlString.format(sql.join(" ") + ";", params);
   }
 
@@ -41,9 +62,9 @@ class SimpleBuilder {
       params.push(data[key]);
       values.push("?");
     });
-    const sql = ["insert into", table, "("];
+    const sql = ["INSERT INTO", table, "("];
     sql.push(cols.join(", "));
-    sql.push(") values (");
+    sql.push(") VALUES (");
     sql.push(values.join(", "));
     sql.push(")");
     return SqlString.format(sql.join(" ") + ";", params);
@@ -56,7 +77,7 @@ class SimpleBuilder {
    * @param whereObject 查询条件
    * @param op 条件操作符，默认 and
    */
-  public static update(table: string, data: any, whereObject: any, op: string = "and"): string {
+  public static update(table: string, data: any, whereObject: any, op: string = "AND"): string {
     const dataKeys = Object.keys(data || {});
     const whereKeys = Object.keys(whereObject || {});
     const values = [];
@@ -70,10 +91,10 @@ class SimpleBuilder {
       where.push(`${key} = ?`);
       params.push(whereObject[key]);
     });
-    const sql = ["update", table, "set"];
+    const sql = ["UPDATE", table, "SET"];
     sql.push(values.join(", "));
     if (whereKeys.length > 0) {
-      sql.push("where");
+      sql.push("WHERE");
       sql.push(where.join(` ${op} `));
     }
     return SqlString.format(sql.join(" ") + ";", params);
@@ -84,7 +105,7 @@ class SimpleBuilder {
    * @param whereObject 查询条件
    * @param op 条件操作符，默认 and
    */
-  public static delete(table: string, whereObject: any, op: string = "and"): string {
+  public static delete(table: string, whereObject: any, op: string = "AND"): string {
     const whereKeys = Object.keys(whereObject || {});
     const where = [];
     const params = [];
@@ -92,9 +113,9 @@ class SimpleBuilder {
       where.push(`${key} = ?`);
       params.push(whereObject[key]);
     });
-    const sql = ["delete from", table];
+    const sql = ["DELETE FROM", table];
     if (whereKeys.length > 0) {
-      sql.push("where");
+      sql.push("WHERE");
       sql.push(where.join(` ${op} `));
     }
     return SqlString.format(sql.join(" ") + ";", params);
@@ -102,8 +123,3 @@ class SimpleBuilder {
 }
 
 export default SimpleBuilder;
-
-// console.log(SimpleBuilder.select("user", ["name", "age"], { id: 1, name: "wolfx" }));
-// console.log(SimpleBuilder.insert("user", { id: 1, name: "wolfx" }));
-// console.log(SimpleBuilder.update("user", { id: 1, name: "wolfx" }, { id: 2, name: "wolfx2" }));
-// console.log(SimpleBuilder.delete("user", { id: 2, name: "wolfx2" }));
