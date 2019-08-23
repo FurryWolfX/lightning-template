@@ -13,7 +13,7 @@
     "doc": "apidoc -i src/router -o public/apidoc"
   },
   "dependencies": {
-    "@wolfx/lightning": "^3.0.9",
+    "@wolfx/lightning": "^3.0.10",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
     "mysql": "^2.16.0",

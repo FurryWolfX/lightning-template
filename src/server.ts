@@ -4,9 +4,7 @@ import logger from "./utils/logger";
 
 function start(port) {
   Lightning.setConfig({
-    cors: {
-      allowedOrigins: ["*"]
-    },
+    cors: true,
     requestLogCallback: (method: string, url: string) => {
       logger.info(`[request:${process.pid}] ${method} ${url}`);
     },
