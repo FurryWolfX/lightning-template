@@ -8,11 +8,8 @@
   },
   "scripts": {
     "build": "tsc --watch",
-    "dev": "nodemon build/app.js -e js,xml,json",
-    "start": "pm2 start build/app.js --name lightning-template -i 2",
-    "restart": "pm2 restart lightning-template",
-    "stop": "pm2 stop lightning-template",
-    "delete": "pm2 delete lightning-template",
+    "dev": "nodemon build/app.js",
+    "start": "node build/app.js",
     "doc": "apidoc -i src/router -o public/apidoc"
   },
   "dependencies": {
@@ -20,7 +17,6 @@
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
     "mysql": "^2.16.0",
-    "pm2": "^3.5.1",
     "source-map-support": "^0.5.13",
     "sqlstring": "^2.3.1",
     "xml-reader": "^2.4.3"

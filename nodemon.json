@@ -1,0 +1,4 @@
+{
+  "ignore": [".git", "node_modules", "src", "public", "log"],
+  "ext": "js xml json"
+}
