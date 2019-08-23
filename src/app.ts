@@ -1,7 +1,6 @@
 import * as cluster from "cluster";
 import "source-map-support/register";
 import logger from "./utils/logger";
-import startServer from "./server";
 
 const processNumber = 1;
 
@@ -14,7 +13,7 @@ if (cluster.isMaster) {
     cluster.fork();
   });
 } else {
-  startServer(3001);
+  require("./server").default(3001);
   // 每分钟输出一次内存
   setInterval(() => {
     const mString = Math.floor(process.memoryUsage().rss / 1024 / 1024) + "MB";
