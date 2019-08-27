@@ -4,3 +4,9 @@ export type Page = {
   pageSize: number;
   list: any[];
 };
+
+export type SelectOption = {
+  op?: string;
+  orderBy?: string;
+  limit?: number[];
+};

@@ -6,7 +6,7 @@ class SimpleBuilder {
    * @param cols 列名
    * @param whereObject 查询条件
    * @param op 条件操作符，默认 and
-   * @param orderBy 排序 asc desc
+   * @param orderBy 排序 xxx asc desc
    * @param limit 数量限制
    */
   public static select(table: string, cols: string[], whereObject: any, op: string = "AND", orderBy?: string, limit?: number[]): string {

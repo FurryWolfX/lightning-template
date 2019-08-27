@@ -1,7 +1,7 @@
-import DatabaseMysql from "../utils/database.mysql";
+import Database from "../utils/database";
 
 export async function findByName(name): Promise<any[]> {
-  return await DatabaseMysql.runXml("test.getUser", {
+  return await Database.runXml("test.getUser", {
     name: name
   });
 }

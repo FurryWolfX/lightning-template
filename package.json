@@ -16,6 +16,7 @@
     "@wolfx/lightning": "^3.0.10",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
+    "mssql": "^5.1.0",
     "mysql": "^2.16.0",
     "source-map-support": "^0.5.13",
     "sqlstring": "^2.3.1",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.136",
+    "@types/mssql": "^4.3.0",
     "@types/mysql": "^2.15.6",
     "@types/node": "^12.7.2",
     "apidoc": "^0.17.7",
