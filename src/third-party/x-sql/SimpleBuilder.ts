@@ -7,8 +7,9 @@ class SimpleBuilder {
    * @param whereObject 查询条件
    * @param op 条件操作符，默认 and
    * @param orderBy 排序 asc desc
+   * @param limit 数量限制
    */
-  public static select(table: string, cols: string[], whereObject: any, op: string = "AND", orderBy?: string): string {
+  public static select(table: string, cols: string[], whereObject: any, op: string = "AND", orderBy?: string, limit?: number[]): string {
     const whereKeys = Object.keys(whereObject || {});
     const sql = ["SELECT", cols.join(", "), "FROM", table];
     const params = [];
@@ -23,6 +24,9 @@ class SimpleBuilder {
     sql.push(where.join(` ${op} `));
     if (orderBy) {
       sql.push(`ORDER BY ${orderBy}`);
+    }
+    if (limit) {
+      sql.push(`LIMIT ${limit.join(',')}`);
     }
     return SqlString.format(sql.join(" ") + ";", params);
   }

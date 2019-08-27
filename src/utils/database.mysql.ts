@@ -8,13 +8,14 @@ import Builder from "../third-party/x-sql";
 import * as mysql from "mysql";
 import logger from "./logger";
 import { camelCase, snakeCase } from "./caseHandle";
+import { dbConfig } from "../config";
 
 /**
  * 初始化 XML 编译器
  */
-const builder = new Builder({
+const builder: Builder = new Builder({
   dir: path.resolve(__dirname, "../../xml"),
-  debug: true,
+  debug: false,
   debugCallback: log => {
     console.log(log);
   }
@@ -23,14 +24,7 @@ const builder = new Builder({
 /**
  * 初始化连接池
  */
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: "127.0.0.1",
-  user: "root",
-  password: "haosql",
-  database: "test",
-  port: 3306
-});
+const pool: mysql.Pool = mysql.createPool(dbConfig);
 
 const query = (sqlString: string): Promise<any[]> => {
   return new Promise((resolve, reject) => {
@@ -44,6 +38,12 @@ const query = (sqlString: string): Promise<any[]> => {
   });
 };
 
+type SelectOption = {
+  op?: string;
+  orderBy?: string;
+  limit?: number[];
+};
+
 class DatabaseMysql {
   static async runXml(namespace: string, params: any): Promise<any[]> {
     const namespaceArray = namespace.split(".");
@@ -51,13 +51,13 @@ class DatabaseMysql {
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
-  static async select(table: string, cols: string[], whereObject: any = {}, op: string = "AND", orderBy?: string): Promise<any[]> {
-    const sqlString = Builder.select(table, cols, snakeCase(whereObject), op, orderBy);
+  static async select(table: string, cols: string[], whereObject: any = {}, selectOption: SelectOption = {}): Promise<any[]> {
+    const sqlString = Builder.select(table, cols, snakeCase(whereObject), selectOption.op, selectOption.orderBy, selectOption.limit);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
   static async count(table: string, whereObject: any = {}, op: string = "AND"): Promise<number> {
-    const sqlString = Builder.count(table, whereObject, op);
+    const sqlString = Builder.count(table, snakeCase(whereObject), op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     const result = await query(sqlString);
     if (result.length > 0) {
@@ -67,12 +67,12 @@ class DatabaseMysql {
     }
   }
   static async insert(table: string, data: any): Promise<any[]> {
-    const sqlString = Builder.insert(table, data);
+    const sqlString = Builder.insert(table, snakeCase(data));
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
   static async update(table: string, data: any, whereObject: any = {}, op: string = "AND"): Promise<any[]> {
-    const sqlString = Builder.update(table, data, snakeCase(whereObject), op);
+    const sqlString = Builder.update(table, snakeCase(data), snakeCase(whereObject), op);
     logger.info(`[SQL:${process.pid}] ${sqlString}`);
     return await query(sqlString);
   }
