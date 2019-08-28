@@ -2,7 +2,7 @@
  * router/index.js 是默认会被加载的第一个路由，这里面可以处理权限拦截等操作
  */
 import { all, get } from "../utils/router";
-import DatabaseMysql from "../utils/database.mysql";
+import Database from "../utils/database";
 import ResultJSON from "../model/ResultJSON";
 
 all("*", (req, res, next) => {
@@ -18,7 +18,7 @@ get("/", (req, res) => res.send("Hello World!"));
 get("/query/:namespace/:queryName", async (req, res) => {
   const { namespace, queryName } = req.params;
   const key = `${namespace}.${queryName}`;
-  const result = await DatabaseMysql.runXml(key, req.query);
+  const result = await Database.runXml(key, req.query);
   const json = new ResultJSON();
   json.data = result;
   json.msg = "通用查询成功";
