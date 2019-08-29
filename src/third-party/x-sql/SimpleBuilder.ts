@@ -1,15 +1,20 @@
 import * as SqlString from "sqlstring";
 import * as TSqlString from "tsqlstring";
 
+let dialect: string = "mysql";
+
 class SimpleBuilder {
+  public static setDialect(value: string): void {
+    dialect = value;
+  }
   /**
    * 方言
    */
-  public static dialect: string = "mysql";
   public static escapeId(value: string): string {
-    if (SimpleBuilder.dialect === "mysql") {
+    console.log(dialect);
+    if (dialect === "mysql") {
       return SqlString.escapeId(value);
-    } else if (SimpleBuilder.dialect === "mssql") {
+    } else if (dialect === "mssql") {
       return TSqlString.escapeId(value);
     } else {
       return value;
@@ -23,7 +28,14 @@ class SimpleBuilder {
    * @param orderBy 排序 xxx asc desc
    * @param limit 数量限制
    */
-  public static select(table: string, cols: string[], whereObject: any, op: string = "AND", orderBy?: string, limit?: number[]): string {
+  public static select(
+    table: string,
+    cols: string[],
+    whereObject: any,
+    op: string = "AND",
+    orderBy?: string,
+    limit?: number[],
+  ): string {
     const whereKeys = Object.keys(whereObject || {});
     const sql = ["SELECT", cols.join(", "), "FROM", SimpleBuilder.escapeId(table)];
     const params = [];
@@ -40,9 +52,9 @@ class SimpleBuilder {
       sql.push(`ORDER BY ${orderBy}`);
     }
     if (limit) {
-      if (SimpleBuilder.dialect === "mysql") {
+      if (dialect === "mysql") {
         sql.push(`LIMIT ${limit.join(",")}`);
-      } else if (SimpleBuilder.dialect === "mssql" && limit.length === 2) {
+      } else if (dialect === "mssql" && limit.length === 2) {
         sql.push(`OFFSET ${limit[0] / limit[1]} ROWS FETCH NEXT ${limit[1]} ROWS ONLY`);
       }
     }
