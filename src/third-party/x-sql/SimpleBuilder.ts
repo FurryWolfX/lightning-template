@@ -1,6 +1,20 @@
 import * as SqlString from "sqlstring";
+import * as TSqlString from "tsqlstring";
 
 class SimpleBuilder {
+  /**
+   * 方言
+   */
+  public static dialect: string = "mysql";
+  public static escapeId(value: string): string {
+    if (SimpleBuilder.dialect === "mysql") {
+      return SqlString.escapeId(value);
+    } else if (SimpleBuilder.dialect === "mssql") {
+      return TSqlString.escapeId(value);
+    } else {
+      return value;
+    }
+  }
   /**
    * @param table 表名
    * @param cols 列名
@@ -11,13 +25,13 @@ class SimpleBuilder {
    */
   public static select(table: string, cols: string[], whereObject: any, op: string = "AND", orderBy?: string, limit?: number[]): string {
     const whereKeys = Object.keys(whereObject || {});
-    const sql = ["SELECT", cols.join(", "), "FROM", table];
+    const sql = ["SELECT", cols.join(", "), "FROM", SimpleBuilder.escapeId(table)];
     const params = [];
     const where = [];
     if (whereKeys.length > 0) {
       sql.push("WHERE");
       whereKeys.forEach(key => {
-        where.push(`${key} = ?`);
+        where.push(`${SimpleBuilder.escapeId(key)} = ?`);
         params.push(whereObject[key]);
       });
     }
@@ -26,7 +40,7 @@ class SimpleBuilder {
       sql.push(`ORDER BY ${orderBy}`);
     }
     if (limit) {
-      sql.push(`LIMIT ${limit.join(',')}`);
+      sql.push(`LIMIT ${limit.join(",")}`);
     }
     return SqlString.format(sql.join(" ") + ";", params);
   }
@@ -38,13 +52,13 @@ class SimpleBuilder {
    */
   public static count(table: string, whereObject: any, op: string = "AND"): string {
     const whereKeys = Object.keys(whereObject || {});
-    const sql = ["SELECT COUNT(*) AS count", "FROM", table];
+    const sql = ["SELECT COUNT(*) AS count", "FROM", SimpleBuilder.escapeId(table)];
     const params = [];
     const where = [];
     if (whereKeys.length > 0) {
       sql.push("where");
       whereKeys.forEach(key => {
-        where.push(`${key} = ?`);
+        where.push(`${SimpleBuilder.escapeId(key)} = ?`);
         params.push(whereObject[key]);
       });
     }
@@ -62,11 +76,11 @@ class SimpleBuilder {
     const cols = [];
     const values = [];
     keys.forEach(key => {
-      cols.push(key);
+      cols.push(SimpleBuilder.escapeId(key));
       params.push(data[key]);
       values.push("?");
     });
-    const sql = ["INSERT INTO", table, "("];
+    const sql = ["INSERT INTO", SimpleBuilder.escapeId(table), "("];
     sql.push(cols.join(", "));
     sql.push(") VALUES (");
     sql.push(values.join(", "));
@@ -88,14 +102,14 @@ class SimpleBuilder {
     const where = [];
     const params = [];
     dataKeys.forEach(key => {
-      values.push(`${key} = ?`);
+      values.push(`${SimpleBuilder.escapeId(key)} = ?`);
       params.push(data[key]);
     });
     whereKeys.forEach(key => {
-      where.push(`${key} = ?`);
+      where.push(`${SimpleBuilder.escapeId(key)} = ?`);
       params.push(whereObject[key]);
     });
-    const sql = ["UPDATE", table, "SET"];
+    const sql = ["UPDATE", SimpleBuilder.escapeId(table), "SET"];
     sql.push(values.join(", "));
     if (whereKeys.length > 0) {
       sql.push("WHERE");
@@ -114,10 +128,10 @@ class SimpleBuilder {
     const where = [];
     const params = [];
     whereKeys.forEach(key => {
-      where.push(`${key} = ?`);
+      where.push(`${SimpleBuilder.escapeId(key)} = ?`);
       params.push(whereObject[key]);
     });
-    const sql = ["DELETE FROM", table];
+    const sql = ["DELETE FROM", SimpleBuilder.escapeId(table)];
     if (whereKeys.length > 0) {
       sql.push("WHERE");
       sql.push(where.join(` ${op} `));

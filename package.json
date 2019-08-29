@@ -20,6 +20,7 @@
     "mysql": "^2.16.0",
     "source-map-support": "^0.5.13",
     "sqlstring": "^2.3.1",
+    "tsqlstring": "^1.0.0",
     "xml-reader": "^2.4.3"
   },
   "devDependencies": {
