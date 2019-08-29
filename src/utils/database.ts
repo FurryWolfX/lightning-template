@@ -1,10 +1,11 @@
 import * as path from "path";
-import Builder from "../third-party/x-sql";
+import Builder from "@wolfx/x-sql";
 import logger from "./logger";
 import { SelectOption } from "./types";
 import { snakeCase } from "./caseHandle";
 import { query } from "./database.mysql";
 
+Builder.setDialect(Builder.NONE);
 /**
  * 初始化 XML 编译器
  */

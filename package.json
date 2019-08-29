@@ -14,14 +14,12 @@
   },
   "dependencies": {
     "@wolfx/lightning": "^3.0.10",
+    "@wolfx/x-sql": "^1.2.4",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
     "mssql": "^5.1.0",
     "mysql": "^2.16.0",
-    "source-map-support": "^0.5.13",
-    "sqlstring": "^2.3.1",
-    "tsqlstring": "^1.0.0",
-    "xml-reader": "^2.4.3"
+    "source-map-support": "^0.5.13"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.136",
