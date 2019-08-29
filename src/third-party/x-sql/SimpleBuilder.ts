@@ -40,7 +40,11 @@ class SimpleBuilder {
       sql.push(`ORDER BY ${orderBy}`);
     }
     if (limit) {
-      sql.push(`LIMIT ${limit.join(",")}`);
+      if (SimpleBuilder.dialect === "mysql") {
+        sql.push(`LIMIT ${limit.join(",")}`);
+      } else if (SimpleBuilder.dialect === "mssql" && limit.length === 2) {
+        sql.push(`OFFSET ${limit[0] / limit[1]} ROWS FETCH NEXT ${limit[1]} ROWS ONLY`);
+      }
     }
     return SqlString.format(sql.join(" ") + ";", params);
   }
