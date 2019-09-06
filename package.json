@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc --watch",
     "dev": "nodemon build/app.js",
-    "start": "pm2 start script/build.js --name build && pm2 start script/dev.js --name dev",
+    "start": "tsc && pm2 start script/build.js --name build && pm2 start script/dev.js --name dev",
     "stop": "pm2 del build && pm2 del dev",
     "doc": "apidoc -i src/router -o public/apidoc"
   },

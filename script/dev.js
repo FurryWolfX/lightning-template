@@ -1,5 +1,7 @@
 const spawn = require("child_process").spawn;
 
-spawn("npm", ["run", "dev"], {
+const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+
+spawn(npm, ["run", "dev"], {
   stdio: "inherit"
 });
