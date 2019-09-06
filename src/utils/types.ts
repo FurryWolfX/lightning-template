@@ -1,3 +1,7 @@
+export type KeyValue<T> = {
+  [key: string]: T;
+};
+
 export type Page = {
   count: number;
   pageNo: number;
