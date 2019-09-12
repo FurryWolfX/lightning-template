@@ -2,26 +2,16 @@ import Lightning from "@wolfx/lightning";
 import { projectName } from "../config";
 import ResultJSON from "../model/ResultJSON";
 import logger from "./logger";
+import { LRequest, LResponse } from "./types";
 
 const { app } = Lightning.core.getState();
 
-type Request = {
-  params: { [key: string]: string };
-  query: { [key: string]: string };
-  body: { [key: string]: string };
-};
-
-type Response = {
-  send: (param: any) => void;
-  json: (param: any) => void;
-};
-
 type NextFunction = () => void;
 
-type Fn = (req: Request, res: Response, next: NextFunction) => void;
+type Fn = (req: LRequest, res: LResponse, next: NextFunction) => void;
 
 function handler(method: string, url: string, fn: Fn) {
-  app[method](projectName + url, async (req: Request, res: Response, next: NextFunction) => {
+  app[method](projectName + url, async (req: LRequest, res: LResponse, next: NextFunction) => {
     const json = new ResultJSON();
     try {
       await fn(req, res, next);
