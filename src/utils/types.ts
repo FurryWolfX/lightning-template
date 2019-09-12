@@ -6,12 +6,14 @@ export type LRequest = {
   params: KeyValue<string>;
   query: KeyValue<string>;
   body: KeyValue<any>;
+  cookies: KeyValue<string>;
 };
 
 export type LResponse = {
   send: (param: any) => void;
   json: (param: any) => void;
   redirect: (url: any) => void;
+  header: (key: string, value: string) => void;
 };
 
 export type Page = {

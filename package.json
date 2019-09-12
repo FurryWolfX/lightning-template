@@ -14,7 +14,7 @@
     "doc": "apidoc -i src/router -o public/apidoc"
   },
   "dependencies": {
-    "@wolfx/lightning": "^3.0.10",
+    "@wolfx/lightning": "^3.0.11",
     "@wolfx/x-sql": "^1.2.7",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
