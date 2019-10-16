@@ -1,6 +1,7 @@
 import * as cluster from "cluster";
 import "source-map-support/register";
 import logger from "./utils/logger";
+import startServer from "./server";
 
 const processNumber = 1;
 
@@ -14,7 +15,7 @@ if (cluster.isMaster) {
   });
   logger.info(`[Master Process:${process.pid}] started`);
 } else {
-  require("./server").default(3001);
+  startServer(3001);
   logger.info(`[Worker Process:${process.pid}] started`);
   // 每分钟输出一次内存
   // setInterval(() => {
