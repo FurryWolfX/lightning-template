@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@wolfx/lightning": "^3.0.11",
-    "@wolfx/x-sql": "^1.2.7",
+    "@wolfx/x-sql": "^1.4.0",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
     "mssql": "^5.1.0",
