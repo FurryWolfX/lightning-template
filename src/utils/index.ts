@@ -23,3 +23,30 @@ export const sleep = (time: number): Promise<any> => {
     setTimeout(() => resolve(), time);
   });
 };
+
+/**
+ * 扁平数据转树
+ */
+type FlatToTreeOption = {
+  idName: string;
+  pidName: string;
+};
+export const flatToTree = (
+  treeData: any,
+  parentId: any,
+  options: FlatToTreeOption = {
+    idName: "id",
+    pidName: "parentId"
+  }
+): any[] => {
+  const treeArr = [];
+  for (let i = 0; i < treeData.length; i++) {
+    const node = treeData[i];
+    if (node[options.pidName] === parentId) {
+      const newNode = node;
+      newNode.children = flatToTree(treeData, node[options.idName], options);
+      treeArr.push(newNode);
+    }
+  }
+  return treeArr;
+};
