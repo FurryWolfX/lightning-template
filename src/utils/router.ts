@@ -10,7 +10,7 @@ type NextFunction = () => void;
 
 type Fn = (req: LRequest, res: LResponse, next: NextFunction) => void;
 
-function handler(method: string, url: string, fn: Fn) {
+function handler(method: "get" | "post" | "all", url: string, fn: Fn) {
   app[method](projectName + url, async (req: LRequest, res: LResponse, next: NextFunction) => {
     const json = new ResultJSON();
     try {

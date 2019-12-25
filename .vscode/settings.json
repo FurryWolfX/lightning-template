@@ -1,0 +1,37 @@
+{
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "vue"],
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 140,
+  "prettier.singleQuote": false,
+  "prettier.tabWidth": 2,
+  "cSpell.enabled": true,
+  "cSpell.ignoreRegExpList": ["string"],
+  "cSpell.enabledLanguageIds": [
+    "css",
+    "html",
+    "jade",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "less",
+    "markdown",
+    "python",
+    "pug",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+    "yml",
+    "vue"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

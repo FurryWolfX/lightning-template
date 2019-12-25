@@ -1,7 +1,7 @@
 import { Buffer } from "buffer";
 import * as crypto from "crypto";
 
-function md5(data): string {
+function md5(data: string): string {
   const buf = Buffer.from(data);
   const str = buf.toString("binary");
   return crypto

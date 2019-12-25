@@ -11,8 +11,8 @@ export const getGUID = (): string => {
 /**
  * 在指定范围内生成随机数
  */
-export const random = (start, stop): number => {
-  return parseInt(Math.random() * (stop - start) + start);
+export const random = (start: number, stop: number): number => {
+  return Math.floor(Math.random() * (stop - start) + start);
 };
 
 /**
