@@ -16,7 +16,7 @@ function start(port: number) {
   });
 
   Lightning.core.start(port, ipArray => {
-    ipArray.forEach(ip => console.log(`[Worker:${process.pid}] Server started http://${ip}:${port}!`));
+    ipArray.forEach(ip => console.log(`[Worker:${process.pid}] Server started http://${ip}:${port}`));
   });
 }
 
