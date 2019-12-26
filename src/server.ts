@@ -11,6 +11,7 @@ function start(port: number) {
     responseLogCallback: (method: string, url: string, time: number) => {
       logger.info(`[response:${process.pid}] ${method} ${url} ${time}ms`);
     },
+    compression: true, // gzip 支持
     storage: path.resolve(__dirname, "../public/upload"),
     routerDir: path.resolve(__dirname, "./router"),
     serviceCenter: {
