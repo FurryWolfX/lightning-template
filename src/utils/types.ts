@@ -9,6 +9,8 @@ export type LRequest = {
   query: KeyValue<string>;
   body: KeyValue<any>;
   cookies: KeyValue<string>;
+  url: string;
+  method: string;
 };
 
 export type LResponse = {

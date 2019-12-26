@@ -8,9 +8,10 @@
   },
   "scripts": {
     "build": "tsc --watch",
-    "dev": "nodemon build/app.js",
-    "start": "tsc && pm2 start script/build.js --name build && pm2 start script/dev.js --name dev",
-    "stop": "pm2 del build && pm2 del dev",
+    "dev": "nodemon --exec node build/app.js",
+    "prod-build": "pm2 start --name lightning-tempate-build npm -- run build",
+    "start": "pm2 start --name lightning-tempate npm -- run dev",
+    "stop": "pm2 del lightning-tempate && pm2 del lightning-tempate-build",
     "doc": "apidoc -i src/router -o public/apidoc"
   },
   "dependencies": {
@@ -22,19 +23,15 @@
     "mysql": "^2.16.0",
     "nodemon": "^1.19.1",
     "pm2": "^3.5.1",
-    "source-map-support": "^0.5.13"
+    "source-map-support": "^0.5.13",
+    "apidoc": "git+https://gitee.com/wolfx/apidoc-fork.git",
+    "typescript": "^3.5.3"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.136",
     "@types/mssql": "^4.3.0",
     "@types/mysql": "^2.15.6",
     "@types/node": "^12.7.2",
-    "apidoc": "git+https://gitee.com/wolfx/apidoc-fork.git",
-    "prettier": "^1.16.4",
-    "typescript": "^3.5.3"
-  },
-  "optionalDependencies": {
-    "wechat-oauth": "^1.5.0",
-    "wechat-pay": "^0.3.2"
+    "prettier": "^1.16.4"
   }
 }
