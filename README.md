@@ -4,19 +4,19 @@
 
 本项目是 lightning-core 核心项目的外围脚手架，下载即可使用。约定了开发规范，可配合代码生成器进行快速开发。
 
-打算经过一些项目洗礼之后再逐步将高级功能整合到 lightning/core 中。
+打算经过一些项目洗礼之后再逐步将高级功能整合到 lightning-core 中。
 
-本项目还有些不完善的地方，暂为公司内部使用。
+**本项目还有些不完善的地方，暂为公司内部使用。**
 
-### 关于 Lightning
+### Lightning 家族的生态
 
-框架是在 Express 的基础上进行的拓展，目标是易于代码生成和 API 快速开发，减少开发成本。
-
-需要配合 lightning-template 和 lightning-generator 一起使用效果最佳。
-
-关于 lightning-template 和 lightning-generator 可以在 Github 获取。
-
-目前作为公司内部使用，使用 MIT 开源协议。
+- lightning-core - 核心，底层基于 Express
+- lightning-template - 开向即用的脚手架项目，集成了常用的配置，以及优秀的日志记录。
+- lightning-generator - 代码生成，通过数据库表结构自动生成CURD请求。
+- lightning-center - 微服务中心
+- x-sql - 简单的基于 XML 的数据库交互，从 Java 的 MyBatis 获取的灵感。
+- apidoc - 接口文档自动生成，lightning-template 中集成的是我自己 fork 的一份 apidoc，修复了中文问题。
+- 兼容 Express 中间件。
 
 ### 启动框架
 
@@ -27,10 +27,11 @@
 1. 执行 `npm run build` 开始编译。
 2. 执行 `npm run dev` 开始运行（支持热部署）。
 
-生产模式（Windows 上会有黑框）：
+生产模式（Windows 上会有黑框，可以选择不使用 PM2）：
 
-1. 执行 `npm run start` 使用 PM2 托管。
-2. 执行 `npm run stop` 停止并移除 PM2 托管。
+1. 执行 `npm run prod-build` 使用 PM2 托管编译。
+2. 执行 `npm run start` 使用 PM2 托管运行。
+3. 执行 `npm run stop` 停止并移除 PM2 托管。
 
 ### 完善的日志记录系统和异常处理
 
@@ -79,7 +80,7 @@ Lightning 使用约定大于配置的理念。约定的结构如下：
 -------| third-party 第三方模块和一些实验性特性
 ```
 
-### x-sql 规范
+### x-sql 规范（示例）
 
 #### 简单查询
 
