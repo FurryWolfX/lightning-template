@@ -10,6 +10,8 @@
 
 ### Lightning 家族的生态
 
+**Lightning 已全面过渡到严谨且高可维护性的 TypeScript 语言。**
+
 - lightning-core - 核心，底层基于 Express
 - lightning-template - 开向即用的脚手架项目，集成了常用的配置，以及优秀的日志记录。
 - lightning-generator - 代码生成，通过数据库表结构自动生成CURD请求。
@@ -181,5 +183,3 @@ export default start;
 ### API 文档生成
 
 集成 [apidoc](https://apidocjs.com/#examples)
-
-![UTOOLS1577348769604.png](http://yanxuan.nosdn.127.net/983e9ca7de958d0e6d9cd81bc43c6a8b.png)
