@@ -8,7 +8,9 @@ log4js.configure({
       type: "dateFile",
       filename: "./log/lightning",
       alwaysIncludePattern: true,
-      pattern: "yyyy-MM-dd.log"
+      pattern: "yyyy-MM-dd.log",
+      maxLogSize: 1024 * 1024 * 500, // 500MB
+      compress: true
     },
     console: { type: "console" }
   },
