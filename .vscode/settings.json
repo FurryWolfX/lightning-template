@@ -15,23 +15,5 @@
   "prettier.tabWidth": 2,
   "cSpell.enabled": true,
   "cSpell.ignoreRegExpList": ["string"],
-  "cSpell.enabledLanguageIds": [
-    "css",
-    "html",
-    "jade",
-    "java",
-    "javascript",
-    "javascriptreact",
-    "less",
-    "markdown",
-    "python",
-    "pug",
-    "scss",
-    "typescript",
-    "typescriptreact",
-    "yaml",
-    "yml",
-    "vue"
-  ],
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

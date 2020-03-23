@@ -4,5 +4,6 @@ log/
 public/apidoc/
 build/
 yarn.lock
+report.html
 package-lock.json
 .DS_Store

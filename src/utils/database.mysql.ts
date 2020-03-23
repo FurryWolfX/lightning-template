@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * 数据库实现（MySQL）
  * https://www.npmjs.com/package/mysql

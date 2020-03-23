@@ -12,12 +12,12 @@
     "prod-build": "pm2 start --name lightning-tempate-build npm -- run build",
     "start": "pm2 start --name lightning-tempate npm -- run dev",
     "stop": "pm2 del lightning-tempate && pm2 del lightning-tempate-build",
-    "doc": "apidoc -i src/router -o public/apidoc"
+    "doc": "apidoc -i src/router -o public/apidoc",
+    "lint": "eslint src --ext .ts -f node_modules/eslint-html-reporter/reporter.js -o report.html"
   },
   "dependencies": {
     "@wolfx/lightning": "^3.2.2",
     "@wolfx/x-sql": "^1.4.1",
-    "apidoc": "git+https://gitee.com/wolfx/apidoc-fork.git",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
     "mssql": "^5.1.0",
@@ -32,6 +32,12 @@
     "@types/mssql": "^4.3.0",
     "@types/mysql": "^2.15.6",
     "@types/node": "^12.7.2",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "apidoc": "git+https://gitee.com/wolfx/apidoc-fork.git",
+    "eslint": "^6.8.0",
+    "eslint-config-alloy": "^3.6.0",
+    "eslint-html-reporter": "^0.7.4",
     "prettier": "^1.16.4"
   }
 }
