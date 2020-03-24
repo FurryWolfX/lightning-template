@@ -1,7 +1,7 @@
 import * as cluster from "cluster";
 import { spawn } from "child_process";
 import logger from "./utils/logger";
-import startServer from "./server";
+import Server from "./server";
 
 // apidoc
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
@@ -21,7 +21,7 @@ if (cluster.isMaster) {
   });
   logger.info(`[Master Process:${process.pid}] started`);
 } else {
-  startServer(3001);
+  Server.start(3001);
   logger.info(`[Worker Process:${process.pid}] started`);
   // 每分钟输出一次内存
   // setInterval(() => {
