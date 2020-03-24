@@ -1,6 +1,13 @@
 import * as cluster from "cluster";
+import { spawn } from "child_process";
 import logger from "./utils/logger";
 import startServer from "./server";
+
+// apidoc
+const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+spawn(npm, ["run", "doc"], {
+  stdio: "inherit"
+});
 
 // 多进程配置
 const processNumber = 1;

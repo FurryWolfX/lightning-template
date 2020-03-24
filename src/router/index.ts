@@ -10,8 +10,8 @@ all("*", (req, res, next) => {
   next();
 });
 
-get("/", (req, res) => res.send("Hello World!"));
-// get("/", (req, res) => res.redirect("./apidoc"));
+// get("/", (req, res) => res.redirect("Hello World!"));
+get("/", (req, res) => res.redirect("./apidoc"));
 
 /**
  * 通用接口，用于映射 XML 中的查询
