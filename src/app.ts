@@ -1,10 +1,9 @@
 import * as cluster from "cluster";
-import "source-map-support/register";
 import logger from "./utils/logger";
 import startServer from "./server";
 
+// 多进程配置
 const processNumber = 1;
-
 if (cluster.isMaster) {
   for (let i = 0; i < processNumber; i++) {
     cluster.fork();

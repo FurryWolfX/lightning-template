@@ -2,29 +2,24 @@
   "name": "lightning-template",
   "description": "fast web framework",
   "author": "wolfx",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "engines": {
     "node": ">= 8.11.0"
   },
   "scripts": {
-    "build": "tsc --watch",
-    "dev": "nodemon --exec node build/app.js",
-    "prod-build": "pm2 start --name lightning-tempate-build npm -- run build",
-    "start": "pm2 start --name lightning-tempate npm -- run dev",
-    "stop": "pm2 del lightning-tempate && pm2 del lightning-tempate-build",
+    "dev": "nodemon --exec ts-node src/app.ts",
     "doc": "apidoc -i src/router -o public/apidoc",
     "lint": "eslint src --ext .ts -f node_modules/eslint-html-reporter/reporter.js -o report.html"
   },
   "dependencies": {
-    "@wolfx/lightning": "^3.2.2",
+    "@wolfx/lightning": "^4.0.2",
     "@wolfx/x-sql": "^1.4.1",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",
     "mssql": "^5.1.0",
     "mysql": "^2.16.0",
     "nodemon": "^1.19.1",
-    "pm2": "^3.5.1",
-    "source-map-support": "^0.5.13",
+    "ts-node": "^8.8.1",
     "typescript": "^3.5.3"
   },
   "devDependencies": {
