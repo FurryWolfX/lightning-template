@@ -1,5 +1,3 @@
-import "@wolfx/x-sql/types/index";
-
 export type KeyValue<T> = {
   [key: string]: T;
 };

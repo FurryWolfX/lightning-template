@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.136",
     "@types/mssql": "^4.3.0",
-    "@types/mysql": "^2.15.6",
+    "@types/mysql": "^2.15.9",
     "@types/node": "^12.7.2",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
