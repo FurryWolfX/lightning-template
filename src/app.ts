@@ -1,17 +1,18 @@
 import * as cluster from "cluster";
+import { cpus } from "os";
 import { spawn } from "child_process";
 import logger from "./utils/logger";
 import Server from "./server";
 
-// apidoc
-const npm = process.platform === "win32" ? "npm.cmd" : "npm";
-spawn(npm, ["run", "doc"], {
-  stdio: "inherit"
-});
-
 // 多进程配置
-const processNumber = 1;
+const processNumber = 1 || cpus().length;
 if (cluster.isMaster) {
+  // apidoc
+  const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+  spawn(npm, ["run", "doc"], {
+    stdio: "inherit"
+  });
+
   for (let i = 0; i < processNumber; i++) {
     cluster.fork();
   }
