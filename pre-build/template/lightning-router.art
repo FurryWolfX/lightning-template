@@ -1,0 +1,4 @@
+/* 这是自动生成的路由文件，勿手动修改！ */
+/* eslint-disable */
+{{each routerList item index}}import "{{item}}";
+{{/each}}
