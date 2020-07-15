@@ -17,8 +17,8 @@ async function readFileList(path: string): Promise<string[]> {
 async function getRouterList(routerDir: string) {
   const routerList: string[] = [];
   // 获取路由文件，并将index排序到第一个
-  const routers: any[] = _.sortBy(await readFileList(routerDir), (po: FileItem) => {
-    if (po.filename === "index.ts") {
+  const routers: any[] = _.sortBy(await readFileList(routerDir), po => {
+    if (/index.ts$/.test(po)) {
       // index.ts 放第一路由
       return -1;
     }
