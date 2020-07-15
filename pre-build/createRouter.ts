@@ -7,13 +7,7 @@ import * as pify from "pify";
 
 const glob = pify(Glob);
 
-export type FileItem = {
-  path?: string;
-  filename?: string;
-  url?: string;
-};
-
-async function readFileList(path: string, filesList: FileItem[] = []): Promise<string[]> {
+async function readFileList(path: string): Promise<string[]> {
   return await glob(`**/*.ts`, {
     cwd: path,
     ignore: ["**/*.test.*", "**/*.spec.*", "**/-*.*"]
