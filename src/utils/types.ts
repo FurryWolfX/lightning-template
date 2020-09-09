@@ -1,32 +1,32 @@
-export type KeyValue<T> = {
+export interface KeyValue<T> {
   [key: string]: T;
-};
+}
 
-export type LRequest = {
+export interface LRequest {
   params: KeyValue<string>;
   query: KeyValue<string>;
   body: KeyValue<any>;
   cookies: KeyValue<string>;
   url: string;
   method: string;
-};
+}
 
-export type LResponse = {
+export interface LResponse {
   send: (param: any) => void;
   json: (param: any) => void;
   redirect: (url: any) => void;
   header: (key: string, value: string) => void;
-};
+}
 
-export type Page = {
+export interface Page {
   count: number;
   pageNo: number;
   pageSize: number;
   list: any[];
-};
+}
 
-export type SelectOption = {
+export interface SelectOption {
   op?: string;
   orderBy?: string;
   limit?: number[];
-};
+}
