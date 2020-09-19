@@ -2,7 +2,10 @@ import * as cluster from "cluster";
 import { cpus } from "os";
 import { spawn } from "child_process";
 import logger from "./utils/logger";
-import Server from "./server";
+import "./router/manifest";
+import server from "./server";
+import { createRouter } from "../pre-build/createRouter";
+import * as path from "path";
 
 // 多进程配置
 const processNumber = 1 || cpus().length;
@@ -22,7 +25,10 @@ if (cluster.isMaster) {
   });
   logger.info(`[Master Process:${process.pid}] started`);
 } else {
-  Server.start(3001);
+  createRouter(path.resolve(__dirname, "./router")).then(() => {
+    server.start();
+  });
+
   logger.info(`[Worker Process:${process.pid}] started`);
   // 每分钟输出一次内存
   // setInterval(() => {

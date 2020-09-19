@@ -7,3 +7,4 @@ yarn.lock
 report.html
 package-lock.json
 .DS_Store
+*.log

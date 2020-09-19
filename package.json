@@ -2,7 +2,7 @@
   "name": "lightning-template",
   "description": "fast web framework",
   "author": "wolfx",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "engines": {
     "node": ">= 8.11.0"
   },
@@ -12,7 +12,7 @@
     "lint": "eslint src --ext .ts -f node_modules/eslint-html-reporter/reporter.js -o report.html"
   },
   "dependencies": {
-    "@wolfx/lightning": "^4.1.0",
+    "@wolfx/lightning": "^5.0.3",
     "@wolfx/x-sql": "^1.4.1",
     "art-template": "^4.13.2",
     "glob": "^7.1.6",
@@ -22,7 +22,7 @@
     "mysql": "^2.16.0",
     "nodemon": "^1.19.4",
     "pify": "^5.0.0",
-    "ts-node": "^8.10.2",
+    "ts-node": "^9.0.0",
     "typescript": "^3.9.5"
   },
   "devDependencies": {
