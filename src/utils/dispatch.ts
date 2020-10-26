@@ -30,5 +30,7 @@ export default function dispatch(data: any) {
   dispatchIndex++;
 
   // send data to worker
-  worker.send(data);
+  if (worker) {
+    worker.send(data);
+  }
 }

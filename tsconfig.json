@@ -2,12 +2,20 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "module": "commonjs",
-    "target": "es2017",
-    "noImplicitAny": true,
     "moduleResolution": "node",
-    "removeComments": true,
+    "target": "es2017",
+    "allowJs": true,
     "sourceMap": true,
+    "strict": true,
+    "removeComments": true,
     "outDir": "./build",
-    "baseUrl": "./src"
-  }
+    "baseUrl": "./src",
+    "types": [
+      "@types/node",
+      "@wolfx/x-sql/types"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

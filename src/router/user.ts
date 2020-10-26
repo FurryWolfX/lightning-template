@@ -1,7 +1,7 @@
 import * as user from "../service/user";
 import ResultJSON from "../model/ResultJSON";
 import server from "../server";
-import { Server, RouteCallbackParams, RouteCallbackCtx, routerClass, routerMapper } from "@wolfx/lightning";
+import { Server, RouteCallbackParams, RouteCallbackCtx, RouterClass, RouterMapper } from "@wolfx/lightning";
 
 /**
  * @api {GET} /user/test 查询测试用户数据
@@ -9,9 +9,9 @@ import { Server, RouteCallbackParams, RouteCallbackCtx, routerClass, routerMappe
  * @apiParam {Number} [id] 其实没有参数
  * @apiGroup User
  */
-@routerClass()
+@RouterClass()
 class TestUserInfoGet {
-  @routerMapper(server, Server.GET, "/user/test")
+  @RouterMapper(server, Server.GET, "/user/test")
   async getData(data: RouteCallbackParams, ctx: RouteCallbackCtx) {
     const json = new ResultJSON();
     json.data = await user.findByName(data.query.name);
@@ -26,9 +26,9 @@ class TestUserInfoGet {
  * @apiDescription 测试post提交
  * @apiGroup User
  */
-@routerClass()
+@RouterClass()
 class TestUserInfoPost {
-  @routerMapper(server, Server.GET, "/user/testPost")
+  @RouterMapper(server, Server.GET, "/user/testPost")
   async getData(data: RouteCallbackParams, ctx: RouteCallbackCtx) {
     const json = new ResultJSON();
     json.data = data.fields;

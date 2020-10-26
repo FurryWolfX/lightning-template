@@ -38,6 +38,6 @@ if (cluster.isMaster) {
 }
 
 // error handler
-process.on("unhandledRejection", (error: Error) => {
-  logger.error(error.stack);
+process.on("uncaughtException", error => {
+  console.error(error.stack);
 });

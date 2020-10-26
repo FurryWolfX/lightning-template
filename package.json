@@ -12,8 +12,8 @@
     "lint": "eslint src --ext .ts -f node_modules/eslint-html-reporter/reporter.js -o report.html"
   },
   "dependencies": {
-    "@wolfx/lightning": "^5.0.3",
-    "@wolfx/x-sql": "^1.4.1",
+    "@wolfx/lightning": "^5.0.9",
+    "@wolfx/x-sql": "^1.4.2",
     "art-template": "^4.13.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
