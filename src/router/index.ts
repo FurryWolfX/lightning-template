@@ -3,12 +3,14 @@
  */
 import server from "../server";
 import { Server, RouteCallbackParams, RouteCallbackCtx, RouterClass, RouterMapper } from "@wolfx/lightning";
+import * as template from "art-template";
 
 @RouterClass()
 class DemoRouter {
   @RouterMapper(server, Server.GET, "/")
   async getData(data: RouteCallbackParams, ctx: RouteCallbackCtx) {
-    ctx.res.writeHead(301, { Location: "./apidoc/" });
-    ctx.res.end();
+    return template(__dirname + "/template/index.html", {});
+    // ctx.res.writeHead(301, { Location: "./apidoc/" });
+    // ctx.res.end();
   }
 }
