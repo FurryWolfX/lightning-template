@@ -15,6 +15,7 @@
     "@wolfx/lightning": "^5.1.0",
     "@wolfx/x-sql": "^1.4.2",
     "art-template": "^4.13.2",
+    "dubbo.ts": "^1.0.72",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "log4js": "^4.0.2",

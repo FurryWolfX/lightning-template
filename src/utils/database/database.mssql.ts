@@ -4,8 +4,8 @@
  * 可根据需要自己拓展
  */
 import * as mssql from "mssql";
-import { camelCase } from "./caseHandle";
-import { dbConfigMssql } from "../config";
+import { camelCase } from "../caseHandle";
+import { dbConfigMssql } from "../../config";
 
 const pool: Promise<mssql.ConnectionPool> = new mssql.ConnectionPool(dbConfigMssql).connect();
 

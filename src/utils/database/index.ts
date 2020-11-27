@@ -1,8 +1,8 @@
 import * as path from "path";
 import Builder from "@wolfx/x-sql";
-import logger from "./logger";
-import { SelectOption } from "./types";
-import { snakeCase } from "./caseHandle";
+import logger from "../logger";
+import { SelectOption } from "../types";
+import { snakeCase } from "../caseHandle";
 import { query } from "./database.mysql";
 
 Builder.setDialect(Builder.NONE);
@@ -17,7 +17,7 @@ const builder: Builder = new Builder({
   }
 });
 
-class Database {
+class Index {
   static async runXml(namespace: string, params: any): Promise<any[]> {
     const namespaceArray = namespace.split(".");
     const sqlString = builder.build(namespaceArray[0], namespaceArray[1], params);
@@ -56,4 +56,4 @@ class Database {
   }
 }
 
-export default Database;
+export default Index;

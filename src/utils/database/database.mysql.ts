@@ -5,8 +5,8 @@
  * 可根据需要自己拓展
  */
 import * as mysql from "mysql";
-import { camelCase, snakeCase } from "./caseHandle";
-import { dbConfigMysql } from "../config";
+import { camelCase, snakeCase } from "../caseHandle";
+import { dbConfigMysql } from "../../config";
 
 const pool: mysql.Pool = mysql.createPool(dbConfigMysql);
 
