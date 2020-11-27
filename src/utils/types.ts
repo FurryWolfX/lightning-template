@@ -1,7 +1,3 @@
-export interface KeyValue<T> {
-  [key: string]: T;
-}
-
 export interface Page {
   count: number;
   pageNo: number;

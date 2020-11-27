@@ -1,5 +1,3 @@
-import { KeyValue } from "./types";
-
 /**
  * 生成符合微软规范的GUID
  */
@@ -42,7 +40,7 @@ export const flatToTree = (
   }
 ): any[] => {
   const treeArr: any[] = [];
-  treeData.forEach((node: KeyValue<any>) => {
+  treeData.forEach((node: Record<string, any>) => {
     if (node[options.pidName] === parentId) {
       const newNode = node;
       newNode.children = flatToTree(treeData, node[options.idName], options);
