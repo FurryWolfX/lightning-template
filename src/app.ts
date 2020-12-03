@@ -3,7 +3,7 @@ import { cpus } from "os";
 import { spawn } from "child_process";
 import logger from "./utils/logger";
 import server from "./server";
-import { createRouter } from "../pre-build/createRouter";
+import { createRouter } from "pre-build/createRouter";
 import * as path from "path";
 
 // 多进程配置
@@ -24,8 +24,10 @@ if (cluster.isMaster) {
   });
   logger.info(`[Master Process:${process.pid}] started`);
 } else {
-  createRouter(path.resolve(__dirname, "./router"))
-    .then(() => import("./router/manifest"))
+  const routerSrc = path.resolve(__dirname, "./router");
+  const routerManifest = path.resolve(__dirname, "../.lightning/router-manifest");
+  createRouter(routerSrc)
+    .then(() => import(routerManifest))
     .then(() => server.start());
 
   logger.info(`[Worker Process:${process.pid}] started`);

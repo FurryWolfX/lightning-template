@@ -1,4 +1,4 @@
-import Database from "../utils/database";
+import Database from "../../packages/database-utils";
 
 export async function findByName(name: string): Promise<any[]> {
   return await Database.runXml("test.getUser", {

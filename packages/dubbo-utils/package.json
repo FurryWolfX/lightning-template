@@ -1,0 +1,14 @@
+{
+  "name": "dubbo-utils",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@dubbo.ts/application": "^2.0.0",
+    "@dubbo.ts/consumer": "^2.0.0",
+    "@dubbo.ts/provider": "^2.0.0",
+    "@dubbo.ts/server": "^2.0.3",
+    "@dubbo.ts/zookeeper": "^2.0.0",
+    "@types/js-to-java": "^2.4.1",
+    "js-to-java": "^2.6.1"
+  }
+}

@@ -3,19 +3,18 @@
     "experimentalDecorators": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2017",
+    "target": "esnext",
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
     "removeComments": true,
-    "outDir": "./build",
-    "baseUrl": "./src",
     "types": [
       "@types/node",
       "@wolfx/x-sql/types"
     ]
   },
-  "exclude": [
-    "node_modules"
+  "include": [
+    "packages",
+    "src"
   ]
 }

@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * 数据库实现（MySQL）
  * https://www.npmjs.com/package/mysql
  * 可根据需要自己拓展
  */
 import * as mysql from "mysql";
-import { camelCase, snakeCase } from "../caseHandle";
-import { dbConfigMysql } from "../../config";
+import { camelCase, snakeCase } from "./caseHandle";
+import { dbConfigMysql } from "./config";
 
 const pool: mysql.Pool = mysql.createPool(dbConfigMysql);
 
