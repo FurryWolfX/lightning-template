@@ -16,7 +16,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@wolfx/lightning": "^5.1.0",
+    "@wolfx/lightning": "^5.1.3",
     "@wolfx/x-sql": "^1.4.2",
     "art-template": "^4.13.2",
     "common-utils": "^1.0.0",
