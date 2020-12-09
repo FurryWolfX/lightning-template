@@ -67,15 +67,23 @@ class SqlBuilderBasic {
   }
 
   /**
+   * 谨慎使用
+   * @param sql
+   */
+  append(sql: string) {
+    this.sqlArray.push(sql);
+  }
+
+  /**
    * 工具方法，生成：[字段op值]的SQL
    * @param k
    * @param v
    * @param op
    */
   setColValue(k: string, v: string | number, op: string) {
-    this.sqlArray.push(colNameFilter(k));
-    this.sqlArray.push(op);
-    this.sqlArray.push(valFilter(v));
+    this.append(colNameFilter(k));
+    this.append(op);
+    this.append(valFilter(v));
   }
 
   /**
@@ -84,7 +92,7 @@ class SqlBuilderBasic {
    * @param distinctColNameList 需要去重的字段名称
    */
   select(colNameList: string[], distinctColNameList: string[] = []) {
-    this.sqlArray.push(`SELECT`);
+    this.append(`SELECT`);
     const cols = colNameList.map(col => {
       if (distinctColNameList.indexOf(col) === -1) {
         return colNameFilter(col);
@@ -92,7 +100,7 @@ class SqlBuilderBasic {
         return `DISTINCT ${colNameFilter(col)}`;
       }
     });
-    this.sqlArray.push(cols.join(","));
+    this.append(cols.join(","));
     return this;
   }
 
@@ -104,14 +112,14 @@ class SqlBuilderBasic {
    */
   selectInto(colNameList: string[], distinctColNameList: string[], tableName: string) {
     this.select(colNameList, distinctColNameList);
-    this.sqlArray.push(`INTO`);
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append(`INTO`);
+    this.append(tableNameFilter(tableName));
     return this;
   }
 
   deleteFrom(tableName: string) {
-    this.sqlArray.push(`DELETE FROM`);
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append(`DELETE FROM`);
+    this.append(tableNameFilter(tableName));
     return this;
   }
 
@@ -121,8 +129,8 @@ class SqlBuilderBasic {
    * @param values
    */
   insertInto(tableName: string, values: Record<string, string | number>) {
-    this.sqlArray.push(`INSERT INTO`);
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append(`INSERT INTO`);
+    this.append(tableNameFilter(tableName));
 
     const colList: string[] = [];
     const valList: string[] = [];
@@ -131,21 +139,21 @@ class SqlBuilderBasic {
       valList.push(valFilter(values[k]));
     });
 
-    this.sqlArray.push(`(${colList.join(",")}) VALUES (${valList.join(",")})`);
+    this.append(`(${colList.join(",")}) VALUES (${valList.join(",")})`);
     return this;
   }
 
   update(tableName: string, values: Record<string, string | number>) {
-    this.sqlArray.push(`UPDATE`);
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append(`UPDATE`);
+    this.append(tableNameFilter(tableName));
 
     const list: string[] = [];
     Object.keys(values).forEach(k => {
       list.push(`${k} = ${valFilter(values[k])}`);
     });
 
-    this.sqlArray.push("SET");
-    this.sqlArray.push(list.join(","));
+    this.append("SET");
+    this.append(list.join(","));
 
     return this;
   }
@@ -154,11 +162,11 @@ class SqlBuilderBasic {
    * @param tableName
    */
   from(tableName: string | string[]) {
-    this.sqlArray.push(`FROM`);
+    this.append(`FROM`);
     if (Array.isArray(tableName)) {
-      this.sqlArray.push(tableName.map(name => tableNameFilter(name)).join(","));
+      this.append(tableName.map(name => tableNameFilter(name)).join(","));
     } else {
-      this.sqlArray.push(tableNameFilter(tableName));
+      this.append(tableNameFilter(tableName));
     }
     return this;
   }
@@ -167,14 +175,14 @@ class SqlBuilderBasic {
    * 表示将要有查询条件
    */
   where() {
-    this.sqlArray.push(`WHERE`);
+    this.append(`WHERE`);
     return this;
   }
 
   orderBy(colName: string, sort: "ASC" | "DESC" = "ASC") {
-    this.sqlArray.push(`ORDER BY`);
-    this.sqlArray.push(colNameFilter(colName));
-    this.sqlArray.push(sort);
+    this.append(`ORDER BY`);
+    this.append(colNameFilter(colName));
+    this.append(sort);
     return this;
   }
 
@@ -184,17 +192,17 @@ class SqlBuilderBasic {
    * @param subBuilder
    */
   group(subBuilder: SqlBuilderBasic) {
-    this.sqlArray.push(`(${subBuilder.toSql()})`);
+    this.append(`(${subBuilder.toSql()})`);
     return this;
   }
 
   or() {
-    this.sqlArray.push(`OR`);
+    this.append(`OR`);
     return this;
   }
 
   and() {
-    this.sqlArray.push(`AND`);
+    this.append(`AND`);
     return this;
   }
 
@@ -213,8 +221,8 @@ class SqlBuilderBasic {
    * @param colName
    */
   isNull(colName: string) {
-    this.sqlArray.push(colNameFilter(colName));
-    this.sqlArray.push(`IS NULL`);
+    this.append(colNameFilter(colName));
+    this.append(`IS NULL`);
   }
 
   /**
@@ -275,32 +283,32 @@ class SqlBuilderAdv extends SqlBuilderBasic {
    * @param colNameList
    */
   selectTop(n: number, colNameList: string[]) {
-    this.sqlArray.push(`SELECT TOP`);
-    this.sqlArray.push(Math.floor(n).toString());
-    this.sqlArray.push(colNameList.map(col => colNameFilter(col)).join(","));
+    this.append(`SELECT TOP`);
+    this.append(Math.floor(n).toString());
+    this.append(colNameList.map(col => colNameFilter(col)).join(","));
     return this;
   }
 
   selectTopPercent(n: number, colNameList: string[]) {
-    this.sqlArray.push(`SELECT TOP`);
-    this.sqlArray.push(Math.floor(n).toString());
-    this.sqlArray.push(`PERCENT`);
-    this.sqlArray.push(colNameList.map(col => colNameFilter(col)).join(","));
+    this.append(`SELECT TOP`);
+    this.append(Math.floor(n).toString());
+    this.append(`PERCENT`);
+    this.append(colNameList.map(col => colNameFilter(col)).join(","));
     return this;
   }
 
   limit(a: number, b?: number) {
-    this.sqlArray.push(`LIMIT`);
+    this.append(`LIMIT`);
     if (b === undefined) {
-      this.sqlArray.push(Math.floor(a).toString());
+      this.append(Math.floor(a).toString());
     } else {
-      this.sqlArray.push(Math.floor(a) + "," + Math.floor(b));
+      this.append(Math.floor(a) + "," + Math.floor(b));
     }
     return this;
   }
 
   rowNum() {
-    this.sqlArray.push(`ROWNUM`);
+    this.append(`ROWNUM`);
     return this;
   }
 
@@ -314,9 +322,9 @@ class SqlBuilderAdv extends SqlBuilderBasic {
    * @param value 支持通配符的字符串
    */
   like(colName: string, value: string) {
-    this.sqlArray.push(colNameFilter(colName));
-    this.sqlArray.push("LIKE");
-    this.sqlArray.push(value);
+    this.append(colNameFilter(colName));
+    this.append("LIKE");
+    this.append(value);
     return this;
   }
 
@@ -327,9 +335,9 @@ class SqlBuilderAdv extends SqlBuilderBasic {
    */
   in(colName: string, valList: Array<string | number>) {
     const list = valList.map(v => valFilter(v));
-    this.sqlArray.push(colNameFilter(colName));
-    this.sqlArray.push("IN");
-    this.sqlArray.push(`(${list.join(",")})`);
+    this.append(colNameFilter(colName));
+    this.append("IN");
+    this.append(`(${list.join(",")})`);
     return this;
   }
 
@@ -340,9 +348,9 @@ class SqlBuilderAdv extends SqlBuilderBasic {
    */
   notIn(colName: string, valList: Array<string | number>) {
     const list = valList.map(v => valFilter(v));
-    this.sqlArray.push(colNameFilter(colName));
-    this.sqlArray.push("NOT IN");
-    this.sqlArray.push(`(${list.join(",")})`);
+    this.append(colNameFilter(colName));
+    this.append("NOT IN");
+    this.append(`(${list.join(",")})`);
     return this;
   }
 
@@ -352,40 +360,40 @@ class SqlBuilderAdv extends SqlBuilderBasic {
    * @param valB
    */
   between(valA: string | number, valB: string | number) {
-    this.sqlArray.push("BETWEEN");
-    this.sqlArray.push(valFilter(valA));
-    this.sqlArray.push("AND");
-    this.sqlArray.push(valFilter(valB));
+    this.append("BETWEEN");
+    this.append(valFilter(valA));
+    this.append("AND");
+    this.append(valFilter(valB));
     return this;
   }
 
   innerJoin(tableName: string) {
-    this.sqlArray.push("INNER JOIN");
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append("INNER JOIN");
+    this.append(tableNameFilter(tableName));
     return this;
   }
 
   leftJoin(tableName: string) {
-    this.sqlArray.push("LEFT JOIN");
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append("LEFT JOIN");
+    this.append(tableNameFilter(tableName));
     return this;
   }
 
   rightJoin(tableName: string) {
-    this.sqlArray.push("RIGHT JOIN");
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append("RIGHT JOIN");
+    this.append(tableNameFilter(tableName));
     return this;
   }
 
   fullJoin(tableName: string) {
-    this.sqlArray.push("FULL JOIN");
-    this.sqlArray.push(tableNameFilter(tableName));
+    this.append("FULL JOIN");
+    this.append(tableNameFilter(tableName));
     return this;
   }
 
   on(colNameA: string, colNameB: string) {
-    this.sqlArray.push("ON");
-    this.sqlArray.push(`${colNameFilter(colNameA)} = ${colNameFilter(colNameB)}`);
+    this.append("ON");
+    this.append(`${colNameFilter(colNameA)} = ${colNameFilter(colNameB)}`);
     return this;
   }
 
@@ -393,7 +401,7 @@ class SqlBuilderAdv extends SqlBuilderBasic {
    * UNION 操作符用于合并两个或多个 SELECT 语句的结果集。
    */
   union() {
-    this.sqlArray.push("UNION");
+    this.append("UNION");
     return this;
   }
 
@@ -401,7 +409,7 @@ class SqlBuilderAdv extends SqlBuilderBasic {
    * UNION 操作符用于合并两个或多个 SELECT 语句的结果集。
    */
   unionAll() {
-    this.sqlArray.push("UNION ALL");
+    this.append("UNION ALL");
     return this;
   }
 }
