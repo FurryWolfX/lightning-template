@@ -3,13 +3,30 @@
  * 参考标准：https://www.w3school.com.cn/sql/sql_top.asp
  */
 
+type FunctionName =
+  | "AVG"
+  | "COUNT"
+  | "FIRST"
+  | "LAST"
+  | "MAX"
+  | "MIN"
+  | "SUM"
+  | "UCASE"
+  | "LCASE"
+  | "MID"
+  | "LEN"
+  | "ROUND"
+  | "NOW"
+  | "FORMAT"
+  | "CONCAT";
+
 /**
  * 生成function
  * 如：func('count', 1)  -->  count(1)
  * @param functionName
  * @param values
  */
-export function func(functionName: string, values: Array<string | number>) {
+export function func(functionName: FunctionName, values: Array<string | number>) {
   const list: string[] = values.map(v => {
     if (typeof v === "string") {
       return `'${v}'`;
@@ -179,10 +196,41 @@ class SqlBuilderBasic {
     return this;
   }
 
-  orderBy(colName: string, sort: "ASC" | "DESC" = "ASC") {
+  /**
+   * 在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用。
+   */
+  having() {
+    this.append(`HAVING`);
+    return this;
+  }
+
+  /**
+   * ORDER BY 语句用于对结果集进行排序。
+   * @param colName
+   * @param sort
+   */
+  orderBy(colName: string[] | string, sort: "ASC" | "DESC" = "ASC") {
     this.append(`ORDER BY`);
-    this.append(colNameFilter(colName));
+    if (Array.isArray(colName)) {
+      this.append(colName.map(col => colNameFilter(col)).join(","));
+    } else {
+      this.append(colNameFilter(colName));
+    }
     this.append(sort);
+    return this;
+  }
+
+  /**
+   * GROUP BY 语句用于结合合计函数，根据一个或多个列对结果集进行分组。
+   * @param colName
+   */
+  groupBy(colName: string[] | string) {
+    this.append("GROUP BY");
+    if (Array.isArray(colName)) {
+      this.append(colName.map(col => colNameFilter(col)).join(","));
+    } else {
+      this.append(colNameFilter(colName));
+    }
     return this;
   }
 
@@ -192,7 +240,7 @@ class SqlBuilderBasic {
    * @param subBuilder
    */
   group(subBuilder: SqlBuilderBasic) {
-    this.append(`(${subBuilder.toSql()})`);
+    this.append(`(${subBuilder.sqlArray.join(" ")})`);
     return this;
   }
 
