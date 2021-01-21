@@ -1,44 +1,32 @@
-import * as cluster from "cluster";
-import { cpus } from "os";
 import { spawn } from "child_process";
-import logger from "./utils/logger";
-import server from "./server";
+import logger from "log-utils";
 import { createRouter } from "pre-build/createRouter";
+import server from "./server";
 import * as path from "path";
+import { initDatabase } from "database-typeorm-utils";
 
-// 多进程配置
-const processNumber = 1 || cpus().length;
-if (cluster.isMaster) {
-  // apidoc
-  const npm = process.platform === "win32" ? "npm.cmd" : "npm";
-  spawn(npm, ["run", "doc"], {
-    stdio: "inherit"
-  });
+// apidoc
+const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+spawn(npm, ["run", "doc"], {
+  stdio: "inherit"
+});
 
-  for (let i = 0; i < processNumber; i++) {
-    cluster.fork();
-  }
-  cluster.on("death", worker => {
-    logger.error(`[Worker:${worker.pid}] died`);
-    cluster.fork();
-  });
-  logger.info(`[Master Process:${process.pid}] started`);
-} else {
-  const routerSrc = path.resolve(__dirname, "./router");
-  const routerManifest = path.resolve(__dirname, "../.lightning/router-manifest");
-  createRouter(routerSrc)
-    .then(() => import(routerManifest))
-    .then(() => server.start());
+const routerSrc = path.resolve(__dirname, "./router");
+const routerManifest = path.resolve(__dirname, "../.lightning/router-manifest");
+initDatabase()
+  .then(() => createRouter(routerSrc))
+  .then(() => import(routerManifest))
+  .then(() => server.start());
 
-  logger.info(`[Worker Process:${process.pid}] started`);
-  // 每分钟输出一次内存
-  // setInterval(() => {
-  //   const mString = Math.floor(process.memoryUsage().rss / 1024 / 1024) + "MB";
-  //   logger.info(`[Worker:${process.pid} -> memory use] ${mString}`);
-  // }, 1000 * 60);
-}
+logger.info(`[Worker Process:${process.pid}] started`);
+
+// 每分钟输出一次内存
+// setInterval(() => {
+//   const mString = Math.floor(process.memoryUsage().rss / 1024 / 1024) + "MB";
+//   logger.info(`[Worker:${process.pid} -> memory use] ${mString}`);
+// }, 1000 * 60);
 
 // error handler
 process.on("uncaughtException", error => {
-  console.error(error.stack);
+  logger.error(error.stack);
 });

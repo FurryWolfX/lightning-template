@@ -1,0 +1,8 @@
+{
+  "name": "tcp-server",
+  "private": true,
+  "version": "1.0.0",
+  "main": "Socket.ts",
+  "types": "Socket.ts",
+  "dependencies": {}
+}

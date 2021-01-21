@@ -1,0 +1,11 @@
+{
+  "name": "redis-utils",
+  "private": true,
+  "version": "1.0.0",
+  "main": "redis.ts",
+  "types": "redis.ts",
+  "dependencies": {
+    "@types/redis": "^2.8.24",
+    "redis": "^3.0.2"
+  }
+}

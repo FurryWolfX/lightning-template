@@ -1,22 +1,28 @@
 {
+  "ts-node": {
+    "transpileOnly": true
+  },
   "compilerOptions": {
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "esnext",
+    "target": "es6",
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
     "removeComments": true,
-    "types": [
-      "@types/node",
-      "@wolfx/x-sql/types"
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "lib": [
+      "es6",
     ]
   },
   "include": [
     "packages",
     "src",
     ".lightning",
-    "types"
-  ]
+    "types",
+  ],
+  "exclude": ["node_modules/**"]
 }

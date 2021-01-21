@@ -1,0 +1,13 @@
+{
+  "name": "database-typeorm-utils",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "reflect-metadata": "^0.1.13",
+    "mysql": "^2.16.0",
+    "@types/mysql": "^2.15.9",
+    "typeorm": "^0.2.29"
+  }
+}

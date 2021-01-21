@@ -1,0 +1,10 @@
+{
+  "name": "log-utils",
+  "private": true,
+  "version": "1.0.0",
+  "main": "logger.ts",
+  "types": "logger.ts",
+  "dependencies": {
+    "log4js": "^4.0.2"
+  }
+}

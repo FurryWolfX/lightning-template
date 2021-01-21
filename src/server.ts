@@ -1,6 +1,6 @@
 import * as path from "path";
 import { Server } from "@wolfx/lightning";
-import logger from "./utils/logger";
+import logger from "log-utils";
 
 const server = new Server({ port: 3001, staticDir: path.resolve(__dirname, "../public") });
 server.setLogger({

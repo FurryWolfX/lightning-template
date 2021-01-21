@@ -1,0 +1,9 @@
+{
+  "name": "process-utils",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@types/lodash": "^4.14.155",
+    "lodash": "^4.17.15"
+  }
+}

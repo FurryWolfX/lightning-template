@@ -1,0 +1,11 @@
+{
+  "name": "kafka-utils",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@types/kafka-node": "^3.0.0",
+    "kafka-node": "^5.0.0"
+  }
+}
