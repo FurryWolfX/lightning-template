@@ -8,6 +8,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es6",
+    "noEmit": true,
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
