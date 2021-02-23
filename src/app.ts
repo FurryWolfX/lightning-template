@@ -3,7 +3,7 @@ import logger from "log-utils";
 import { createRouter } from "pre-build/createRouter";
 import server from "./server";
 import * as path from "path";
-import { initDatabase } from "database-typeorm-utils";
+// import { initDatabase } from "database-typeorm-utils";
 
 // apidoc
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
@@ -13,8 +13,13 @@ spawn(npm, ["run", "doc"], {
 
 const routerSrc = path.resolve(__dirname, "./router");
 const routerManifest = path.resolve(__dirname, "../.lightning/router-manifest");
-initDatabase()
-  .then(() => createRouter(routerSrc))
+
+// initDatabase()
+//   .then(() => createRouter(routerSrc))
+//   .then(() => import(routerManifest))
+//   .then(() => server.start());
+
+createRouter(routerSrc)
   .then(() => import(routerManifest))
   .then(() => server.start());
 
